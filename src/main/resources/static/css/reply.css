@@ -1,0 +1,186 @@
+@charset "UTF-8";
+
+/* //////////////////////////////////////////// */
+				/* 댓글 */
+/* //////////////////////////////////////////// */
+#reply>.wrap {
+	background-color: #e9e9e9;
+	margin-bottom: 50px;
+	margin-top: 30px;
+}
+
+#reply>.wrap h2{
+	padding: 20px;
+	text-align: left;
+	height: 80px;
+	border-bottom: 1px solid #a9a9a9;
+}
+/* ///////////////////////////// */
+#replylist>.wrap{
+	padding: 20px 0 20px 20px;
+	border-bottom: 1px solid #a9a9a9;
+}
+
+#replylist>.wrap .replyer{
+	height: 30px;
+	line-height: 30px;
+}
+
+#replylist>.wrap .replyer span{
+	font-size: 15px;
+}
+#replylist>.wrap .replyer span:nth-child(1){
+	margin-right: 15px;
+}
+/* ///////////////////////////// */
+#reply>.wrap .btns button{
+	border: none;
+	cursor: pointer;
+	font-size: 14px;
+	width: 30px;
+	margin-right: 10px;
+}
+
+#reply>.wrap .btns .editBtns{
+	display: none;
+}
+
+#reply>.wrap .btns .done-edit{
+	width: 60px;
+}
+
+/* ///////////////////////////// */
+
+#reply>.wrap .reply p{
+	max-width: 850px;
+	margin-top: 20px;
+	font-size: 14px;
+	padding-left: 5px;
+}
+
+/* ///////////////////////////// */
+#reply>.wrap #replypaging{
+	height: 50px;
+}
+
+
+
+
+/* ///////////////////////////// */
+#reply .reply-add th{
+	height: 50px;
+	background-color: #e9e9e9;
+	width: 90px;
+}
+#reply .reply-add tr{
+	border-top: 1px solid #a9a9a9;
+	border-bottom: 1px solid #a9a9a9;
+}
+#reply .reply-add td{
+	padding: 10px;
+}
+#reply .reply-add input{
+	height: 30px;
+	background-color: #e9e9e9;
+	border: 1px solid #a9a9a9;
+}
+
+#reply .reply-add textarea {
+	background-color: #e9e9e9;
+	border: 1px solid #a9a9a9;
+	max-width: 797px;
+}
+
+#reply .reply-add .wrap{
+	text-align: center;
+	margin-top: 30px;
+}
+
+#reply .reply-add .wrap button {
+	width: 90px;
+	height: 30px;
+	cursor: pointer;
+}
+/* //////////////////////////////////////////// */
+				/* 댓글 수정 */
+/* //////////////////////////////////////////// */
+#reply>.wrap .editForm{
+	display: none;
+}
+
+#reply>.wrap .editForm input{
+	height: 25px;
+    padding-left: 5px;
+}
+
+#reply>.wrap .editForm textarea {
+	max-width: 850px;
+	padding: 5px 0 0 5px;
+}
+
+#reply>.wrap .editForm p{
+	margin-bottom: 10px;
+	padding-left: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

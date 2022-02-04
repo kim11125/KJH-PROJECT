@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
+	<head th:fragment="head">
+		<meta charset="UTF-8">
+		<title>GALAX CLONE</title>
+		 <!-- CDN으로 넣는방법 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="/css/commons.css">
+		<link rel="stylesheet" href="/css/header.css">
+		<link rel="stylesheet" href="/css/footer.css">
+		<link rel="stylesheet" href="/css/index.css">
+	</head>
+	<!-- 스크립트를 파일로 넣는방법 -->
+	<script src="/js/visual.js"></script>
+		<th:block th:insert="~{/layout/header :: header}" />
+		<main>
+			<div class="wrap">
+				<section id="visual">
+				<!-- ////////////상단배너///////////// -->
+					<h1>비주얼영역</h1>
+					<div class="wrap">
+						<div class="wrap visual-area">
+							<div class="">
+								<!-- <ol class="flex vis">
+									<li class="img"></li>
+									<li class="img"></li>
+									<li class="img"></li>
+									<li class="img"></li>
+									<li class="img"></li>
+									<li class="img"></li>
+								</ol> -->
+								<!-- <ol class="flex center bullets">
+									<li class="bullet"></li>
+									<li class="bullet"></li>
+									<li class="bullet"></li>
+									<li class="bullet"></li>
+									<li class="bullet"></li>
+									<li class="bullet"></li>
+								</ol> -->
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- ///////////인덱스 컨텐츠/////////// -->
+				<section id="main">
+					<div class="flex end">
+						<h1>유튜브</h1>
+						<section id="youtube">
+							<div class="wrap">
+								<iframe width="475" height="290" src="https://www.youtube.com/embed/i79ZPZRQI28" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							</div>
+						</section>
+						<section id="mid-ban">
+							<div class="flex">
+								<a>
+									<img alt="" src="/images/cate1.jpg">
+								</a>
+								<a>
+									<img alt="" src="/images/cate2.jpg">
+								</a>
+								<a>
+									<img alt="" src="/images/cate3.jpg">
+								</a>
+							</div>
+						</section>
+					</div>
+					<!-- //////////////////// -->
+					<div class="wrap flex between view-size">
+						<h1>게시판</h1>
+						<section>
+							<div class="top">
+								<p><a href="#">공지사항</a></p>
+								<dl>
+									<dt><a>2021년 12월 31일 고객지원센터 휴무 안내</a></dt>
+									<dd>2021-12-30</dd>
+								</dl>
+								<dl>
+									<dt><a>행정 처분 고지</a></dt>
+									<dd>2021-10-18</dd>
+								</dl>
+								<dl>
+									<dt><a>2021_10월 대체공휴일 휴무안내</a></dt>
+									<dd>2021-09-30</dd>
+								</dl>
+								<dl>
+									<dt><a>고객지원센터 정상운영 안내</a></dt>
+									<dd>2021-09-23</dd>
+								</dl>
+							</div>							
+							<div class="bottom">
+								<p><a href="#">FAQ</a></p>
+								<ul>
+									<li><a>제품 시리얼넘버 확인은 어떻게 하나요?</a></li>
+									<li><a>A/S 접수는 어떻게 하나요?</a></li>
+								</ul>
+							</div>							
+						</section>
+						<div id="building">
+							<a href="/">
+								<img alt="" src="/images/building.jpg">
+							</a>
+						</div>
+						<section>
+							<div class="top">
+								<p><a href="#">이벤트</a></p>
+								<dl>
+									<dt><a>[종료]</a></dt>
+									<dd>2021-12-03</dd>
+								</dl>
+								<dl>
+									<dt><a>[종료]</a></dt>
+									<dd>2021-11-01</dd>
+								</dl>
+								<dl>
+									<dt><a>[종료]</a></dt>
+									<dd>2021-10-27</dd>
+								</dl>
+								<dl>
+									<dt><a>[종료]</a></dt>
+									<dd>2021-10-08</dd>
+								</dl>
+							</div>						
+							<div class="bottom">
+								<p><a href="/custom/board">자료실</a></p>
+								<ul>
+									<li><a>1. Xtreme Tuner Gear - 게이밍 기어 소프트웨어</a></li>
+									<li><a>2. [BIOS] RTX 30 시리즈 Resizable BAR 바이오…</a></li>
+								</ul>
+							</div>						
+						</section>
+					</div>
+				</section>
+			</div>
+		</main>
+	<th:block th:insert="~{/layout/footer :: footer}" />
+</html>

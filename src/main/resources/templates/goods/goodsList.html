@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>판매페이지 :: GALAX CLONE</title>
+		 <!-- CDN으로 넣는방법 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="/css/commons.css">
+		<link rel="stylesheet" href="/css/header.css">
+		<link rel="stylesheet" href="/css/footer.css">
+		<link rel="stylesheet" href="/css/side.css">
+		<link rel="stylesheet" href="/css/content.css">
+		<link rel="stylesheet" href="/css/goods.css">
+	</head>
+	<body>
+		<th:block th:insert="~{/layout/header :: header}" />
+		<section id="goodspage" class="view-size flex between">
+			<div id="side" th:fragment="goods-side">
+				<p>판매</p>
+				<ul>
+					<li>
+						<a href="/goods">- 기타부품</a>
+					</li>
+					<li>
+						<a href="#">- 중고판매</a>
+					</li>
+					<li>
+						<a href="#">- 견적문의</a>
+					</li>
+				</ul>
+			</div>
+			<div class="wrap">
+				<section id="goodsPage">
+					<div id="title">
+						<p>판매페이지</p>
+					</div>
+				<!-- ///////////////////// -->
+					<div class="wrap between" id="goodsList">
+					
+					</div>
+					<!-- ///////////////////// -->
+				</section>
+			</div>
+			<script type="text/javascript">
+
+					$(function(){
+						goodslist();
+						countup();
+					});
+
+					function goodslist(){
+						$.ajax({
+							url: "/goodspage", //goodspage로 매핑된 데이터를
+							success: function(result){
+								$("#goodsPage>.wrap").html(result);
+								//여기에 html을 뿌림
+							}
+						});
+					};
+					
+					function countup(){
+						var cnum = $(this).siblings(".cnum").val();
+						alert(cnum);
+					};
+
+					</script>
+			
+		</section>
+	</body>
+	<th:block th:insert="~{/layout/footer :: footer}" />
+</html>

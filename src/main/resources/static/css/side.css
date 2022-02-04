@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+#side{
+	width: 216px;
+}
+#side p{
+	font-size: 26px;
+	border-bottom: 1px solid #999;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	font-weight: 700;
+	color: #555;
+}
+#side ul li{
+	font-size: 15px;
+	margin-bottom: 5px;
+}
+#side ul li a:hover {
+	color: red;
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
+<th:block th:fragment="header">
+	<head>
+		
+	</head>
+	<body>
+		<header>
+			<div class="wrap">
+				<section class="social flex end">
+					<div class="wrap">
+						<h1>sns</h1>
+						<!-- sns아이콘 -->
+						<ul class="icons flex between">
+							<li>
+								<a href="http://www.naver.com" target="_blank">
+									<img alt="facebook" src="/images/face.gif">
+								</a>
+							</li>
+							<li>
+								<a href="#" target="_blank">
+									<img alt="danawa" src="/images/danawa.gif">
+								</a>
+							</li>
+							<li>
+								<a href="#" target="_blank">
+									<img alt="kakao" src="/images/kakao.png">
+								</a>
+							</li>
+							<li>
+								<a href="https://www.youtube.com/watch?v=Dhy20HC8bM4&list=PLu5cXg30tjURoULIY32g38TvgNIcldgvN" target="_blank">
+									<img alt="youtube" src="/images/youtube.png">
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div id="login">
+						<h1>로그인</h1>
+						<ul class="flex end">
+							<li sec:authorize="isAnonymous()">
+								<a href="/loginpage">로그인</a>
+							</li>
+							<li class="join" sec:authorize="isAnonymous()">
+								<span class="bar"></span>
+								<a href="/join">회원가입</a>
+							</li>
+							<li sec:authorize="isAuthenticated()">
+								<span id="username" sec:authentication="principal.name"></span>
+								<a href="/logout">로그아웃</a>
+								<span class="bar"></span>
+								<a href="/user">회원정보</a>
+								<span class="bar"></span>
+								<a href="/cart">장바구니</a>
+								<span class="bar"></span>
+							</li>
+							<li sec:authorize="hasRole('ROLE_ADMIN')">
+								<a href="/admin">관리자페이지</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section id="top-menu" class="flex between">
+					<div id="logo">
+						<h1>로고</h1>
+						<!-- 로고넣을거임 -->
+						<a href="/">GALAX</a>
+					</div>
+					<!-- <script type="text/javascript">
+						$(function(){
+							$("#top-menu>.nb>ul li").find("#sub-menu").stop().slideUp();
+							
+							$("#top-menu>.nb>ul li").hover(function(){
+								$(this).find("#sub-menu").stop().fadeIn(300);
+							},function(){
+								$(this).find("#sub-menu").stop().fadeOut(300);
+							});
+						});
+					</script> -->
+					<div th:replace="~{/layout/menu}"></div>
+					<div id="search">
+						<a href="/"><img src="/images/search.gif"></a>
+						<input type="text">
+					</div>
+				</section>
+			</div>
+		</header>
+	</body>
+</th:block>
+</html>

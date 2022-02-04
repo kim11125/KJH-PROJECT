@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>회원가입 :: GALAX CLONE</title>
+		 <!-- CDN으로 넣는방법 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<link rel="stylesheet" href="/css/commons.css">
+		<link rel="stylesheet" href="/css/header.css">
+		<link rel="stylesheet" href="/css/footer.css">
+		<link rel="stylesheet" href="/css/side.css">
+		<link rel="stylesheet" href="/css/cart.css">
+	</head>
+	<body>
+		<th:block th:insert="~{/layout/header :: header}" />
+		<section id="cart" class="view-size">
+			<div id="title">
+				<p>장바구니</p>
+			</div>
+			<div class="wrap">
+				<ul class="flex between">
+					<li>상품정보</li>
+					<li>판매가</li>
+					<li>수량</li>
+					<li>구매가</li>
+					<li>삭제</li>
+				</ul>
+				<ul class="flex between">
+					<li>상품정보 들어갈거임</li>
+					<li>판매가정보(개당 가격) 들어갈거임</li>
+					<li>수량조정 들어갈거임</li>
+					<li>구매가(판매가 * 수량) 들어갈거임</li>
+					<li>
+						<button type="button">삭제</button>
+					</li>
+				</ul>
+			</div>
+			<div class="tot flex">
+				<div class="wrap">
+					<p>구매가격 정보</p>
+				</div>
+				<div>
+					<p>총 주문금액 들어갈자리</p>
+				</div>
+			</div>
+			<div class="btn-order">
+				<a href="/goods"><button>쇼핑계속하기</button></a>
+				<button>주문하기</button>
+			</div>
+		</section>
+	</body>
+	<th:block th:insert="~{/layout/footer :: footer}" />
+</html>

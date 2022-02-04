@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}"/>
+		<meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+		<title>회원가입 :: GALAX CLONE</title>
+		 <!-- CDN으로 넣는방법 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<link rel="stylesheet" href="/css/commons.css">
+		<link rel="stylesheet" href="/css/header.css">
+		<link rel="stylesheet" href="/css/footer.css">
+		<link rel="stylesheet" href="/css/side.css">
+		<link rel="stylesheet" href="/css/join.css">
+	</head>
+	<body>
+		<th:block th:insert="~{/layout/header :: header}" />
+		<section class="view-size" id="userUpdate">
+		<th:block th:each="user : ${user}">
+			<form action="/userInfoUpdate" method="post">
+				<div class="reg-form">
+					<table>
+						<tr>
+							<th>아이디</th>
+							<td>
+								<span class="form-info">영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요.<br></span>
+								<input id="id" name="userId" type="text" required="required" class="bsize3" th:value="${user.userId}">
+							</td>
+						</tr>
+						<tr>
+							<th>비밀번호</th>
+							<td>
+								<input id="pass1" name="pw" type="password" required="required" class="bsize3">
+							</td>
+						</tr>
+						<tr>
+							<th>비밀번호 확인</th>
+							<td>
+								<input id="pass2" type="password" required="required" class="bsize3">
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="reg-form">
+					<table>
+						<tr>
+							<th>이름</th>
+							<td>
+								<input id="name" name="name" type="text" required="required" class="bsize2" th:value="${user.name}">
+							</td>
+						</tr>
+						<tr>
+							<th>닉네임</th>
+							<td>
+								<span class="form-info">공백없이 한글,영문,숫자만 입력 가능 (한글2자, 영문4자 이상)<br>
+								닉네임을 바꾸시면 앞으로 60일 이내에는 변경 할 수 없습니다.<br></span>
+								<input id="nick" name="nick" type="text" required="required" class="bsize2" th:value="${user.nick}">
+							</td>
+						</tr>
+						<tr>
+							<th>E-mail</th>
+							<td>
+								<input id="email" name="email" type="text" required="required" class="bsize5" th:value="${user.email}">
+							</td>
+						</tr>
+						<tr>
+							<th>전화번호</th>
+							<td>
+								<input id="phone" name="phone" type="text" required="required" class="bsize3" th:value="${user.phone}">
+							</td>
+						</tr>
+						<tr>
+							<th>주소</th>
+							<td colspan="3">
+								<button type="button" onclick="findAddr()">주소검색</button><br>
+								<input name="address1" id="address1" type="text" required="required" readonly="readonly" class="bsize4" th:value="${user.address1}">
+								<label>기본주소</label><br>
+								<input name="address2" id="address2" type="text" class="bsize4">
+								<label>상세주소</label><br>
+							</td>
+						</tr>
+						<tr class="sys">
+							
+							<th colspan="4">*사용중인 시스템 기입 - 모르는 경우 "모름" 기입</th>
+						</tr>
+						<tr>
+							<th>사용중인 VGA</th>
+							<td>
+								<input id="vga" name="vga" type="text" required="required" class="bsize3" th:value="${user.vga}">
+							</td>
+							<th>시리얼 넘버</th>
+							<td>
+								<input id="sn" name="sn" type="text" required="required" class="bsize3" th:value="${user.sn}">
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="reg-form">
+					<table class="mailing">
+						<tr>
+							<th>메일링서비스</th>
+							<td>
+								<input id="mailing" name="mailing" type="checkbox">
+								<span>정보 메일을 받겠습니다.</span>
+							</td>
+						</tr>
+						<tr>
+							<th>정보공개</th>
+							<td>
+								<span class="form-info">정보공개를 바꾸시면 앞으로 0일 이내에는 변경이 안됩니다.<br></span>
+								<input id="open" name="open" type="checkbox">
+								<span>정보 메일을 받겠습니다.</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="btn-submit">
+					<input type="hidden" th:name="${_csrf.parameterName}"  th:value="${_csrf.token}"/>
+					<input type="hidden" value="put" name="_method">
+					<button type="submit" id="btn-join" onsubmit="userUpdate()">수정완료</button>
+					<a href="/user">취소</a>
+				</div>
+			</form>
+		</th:block>
+		</section>
+	</body>
+	<script type="text/javascript">
+	function findAddr(){ //주소검색 버튼클릭하면
+		new daum.Postcode({
+	        oncomplete: function(data) { //선택시 입력값 세팅
+	        	
+	        	console.log(data);
+	        	
+	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+	            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	            var roadAddr = data.roadAddress; // 도로명 주소 변수
+	            var jibunAddr = data.jibunAddress; // 지번 주소 변수
+	            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	            document.getElementById('address1').value = data.zonecode;
+	            if(roadAddr !== ''){
+	                document.getElementById("address1").value = roadAddr;
+	            } 
+	            else if(jibunAddr !== ''){
+	                document.getElementById("address1").value = jibunAddr;
+	            }
+	        }
+	    }).open();
+	}
+	
+	
+	</script>	
+	<th:block th:insert="~{/layout/footer :: footer}" />
+</html>

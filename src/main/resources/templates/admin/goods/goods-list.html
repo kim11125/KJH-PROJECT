@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<th:block th:each="dto : ${list}">
+		<div class="goods">
+			<div class="flex between">
+				<ul class="thum">
+					<li class="img" th:style="|background-image: url('${dto.filePath + dto.fileName}');|">
+				</ul>
+				<div>
+					<ul class="goods-content">
+						<li class="flex">
+							<span>제품명</span>
+							<p><a th:href="|/goods/${dto.gno}|">[[${dto.title}]]</a></p>
+						</li>
+						<li class="flex price">
+							<span>판매가격</span>
+							<p>[[${dto.price}]]원</p>
+						</li>
+						<li class="flex">
+							<span>비고</span>
+							<p>[[${dto.subTitle}]]</p>
+						</li>
+						<li class="flex count">
+							<span>수량</span>
+							<div class="wrap">
+								<input class="cnum" type="text" value="1">
+								<button class="countup" type="button" onclick="countup()">+</button>
+								<button class="countdown" type="button" onclick="countdown()">-</button>
+							</div>
+						</li>
+					</ul>
+					<div class="flex end btn-cart">
+						<button id="btn-cart" type="submit" onsubmit="cart()">장바구니 담기</button>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</th:block>
+</html>

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{layout/admin :: adminContent(~{this::main})}">
+		<main id="adminmain" th:fragment="main">
+			<h1>메인</h1>
+			<div class="wrap admin">
+				<p>관리자페이지</p>
+			</div>
+		</main>
+</th:block>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset="UTF-8">
+		<meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}"/>
+		<meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+		<title>qna :: GALAX CLONE</title>
+		 <!-- CDN으로 넣는방법 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="/css/commons.css">
+		<link rel="stylesheet" href="/css/header.css">
+		<link rel="stylesheet" href="/css/footer.css">
+		<link rel="stylesheet" href="/css/side.css">
+		<link rel="stylesheet" href="/css/content.css">
+		<link rel="stylesheet" href="/css/qna.css">
+	</head>
+	<body>
+	<th:block th:insert="~{/layout/header :: header}" />
+	<section id="qnawrite" class="view-size between">
+			<div class="wrap">
+				<p>Q&amp;A</p>
+			</div>
+			<div class="qna-form view-size">
+				<form action="/qna/write" method="post">
+					<table>
+						<tr>
+							<th>질문유형</th>
+							<td>
+								<select class="qna-cate" name="category" required="required">
+									<option value="" selected="selected" disabled="disabled"> 선택 </option>
+									<option value="주문/결제">주문/결제</option>
+									<option value="회원정보">회원정보</option>
+									<option value="배송문의">배송문의</option>
+									<option value="A/S문의">A/S문의</option>
+									<option value="상품/이벤트">상품/이벤트</option>
+									<option value="건의사항">건의사항</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>제목</th>
+							<td>
+								<input name="subject" class="subject" type="text" required="required">
+							</td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td>
+								<textarea class="textarea" name="content" rows="15" cols="130" required="required"></textarea>
+							</td>
+						</tr>
+					</table>
+					<div class="btns flex">
+						<a href="/qna"><button type="button">목록보기</button></a>
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+						<button type="submit">작성완료</button>
+					</div>
+				</form>
+			</div>
+	</section>
+	<th:block th:insert="~{/layout/footer :: footer}" />
+	</body>
+</html>

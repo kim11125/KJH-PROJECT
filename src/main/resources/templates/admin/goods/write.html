@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{layout/admin :: adminContent(~{this::main})}">
+		<main th:fragment="main">
+			<h1>메인</h1>
+			<div class="wrap admin view-size">
+				<p class="page-tit">상품 등록</p>
+				<form action="/goods/write" method="post" enctype="multipart/form-data">
+					<table>
+						<tr>
+							<th>카테고리</th>
+							<td>
+								<select name="category">
+									<option value="" selected="selected" disabled="disabled">선택</option>
+									<option value="카테고리1">카테고리1</option>
+									<option value="카테고리2">카테고리2</option>
+									<option value="카테고리3">카테고리3</option>
+									<option value="기타">기타</option>
+								</select>
+							</td>
+						</tr>
+						<tr id="selDis">
+							<th>할인적용</th>
+							<td>
+								<label>
+									<span>적용</span>
+									<input type="radio" name="sel-dis" id="diso" checked="checked">
+								</label>
+								<label>
+									<span>적용안함</span>
+									<input type="radio" name="sel-dis" id="disx">
+								</label>
+							</td>
+						</tr>
+						<tr id="discount">
+							<th>할인율</th>
+							<td>
+								<input type="number" value="0" min="0" max="100" name="discount" placeholder="1~100 숫자 입력">
+							</td>
+						</tr>
+						<tr>
+							<th>상품명</th>
+							<td>
+								<input type="text" name="title" placeholder="상품명">
+							</td>
+						</tr>
+						<tr>
+							<th>가격</th>
+							<td>
+								<input type="text" name="price" placeholder="가격">
+							</td>
+						</tr>
+						<tr>
+							<th>갯수</th>
+							<td>
+								<input type="text" name="stock" placeholder="갯수">
+							</td>
+						</tr>
+						<tr>
+							<th>간단한 설명(선택사항)</th>
+							<td>
+								<input type="text" name="subTitle" placeholder="메인페이지에 보여질 간단한 설명(선택)">
+							</td>
+						</tr>
+						<tr>
+							<th>상세설명</th>
+							<td>
+								<textarea name="goodsDetail" cols="100" rows="15"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<th>사진첨부</th>
+							<td>
+								<input type="file" name="goodsFile">
+							</td>
+						</tr>
+					</table>
+					<script type="text/javascript">
+						$(function(){
+							$("#diso").click(function(){
+								$("#discount").show();
+							});
+							$("#disx").click(function(){
+								$("#discount").hide();
+							});
+						});
+					</script>
+					<ul>
+						<li>
+							<input type="hidden" th:name="${_csrf.parameterName}"  th:value="${_csrf.token}"/>
+							<button type="submit">등록</button>
+						</li>
+					</ul>
+				</form>
+			</div>
+		</main>
+</th:block>
+</html>

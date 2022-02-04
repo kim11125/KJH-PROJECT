@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<th:block th:each="list : ${reply}">
+		<div class="wrap">
+			<section class="flex between">
+				<div class="replyer">
+					<span class="default">[[${list.replyer}]]</span>
+					<span class="default">[[${list.createdDate.toLocalDate}]]</span>
+					<p class="editForm">
+						<span>이름</span>
+						<input type="text" th:value="${list.replyer}">
+					</p>
+				</div>
+				<div class="btns">
+					<button type="button" class="btn-edit">수정</button>
+					<button type="button" class="btn-del">삭제</button>
+					<input type="hidden" th:value="${list.rno}" class="rno">
+					<div class="editBtns">
+						<input type="hidden" th:value="${list.rno}" class="rno" name="_method" value="put">
+						<button class="done-edit">수정완료</button>
+						<button class="cancel-edit">취소</button>
+					</div>
+				</div>
+			</section>
+			<section class="reply">
+					<p class="default">[[${list.reply}]]</p>
+					<div class="editForm">
+						<p>내용</p>
+						<textarea rows="5" cols="123">[[${list.reply}]]</textarea>
+					</div>
+			</section>
+		</div>
+	</th:block>
+	<script type="text/javascript">
+		$(function(){
+			
+			//수정버튼 클릭 이벤트
+			$(".btn-edit").click(function(){ 
+				$(this).hide();			//수정버튼 숨기기
+				$(this).next().hide();	//삭제버튼 숨기기
+				$(this).parent().find(".editBtns").show(); // 수정완료/취소버튼 나타내기
+				
+				$(this).parents("#replylist>.wrap").find(".default").hide();
+				$(this).parents("#replylist>.wrap").find(".editForm").show();
+			});
+			
+			//수정취소버튼 클릭 이벤트
+			$(".cancel-edit").click(function(){
+				$(this).parent().hide();
+				$(this).parent().siblings(".btn-edit").show();
+				$(this).parent().siblings(".btn-del").show();
+			
+				$(this).parents("#replylist>.wrap").find(".default").show();
+				$(this).parents("#replylist>.wrap").find(".editForm").hide();
+			});
+				
+			//수정완료 버튼 클릭 이벤트
+			$(".done-edit").click(function(){
+				
+				var rno = $(this).siblings(".rno").val();
+				
+				var nreply = $(this).parents("#replylist>.wrap").find("textarea").val();
+				var nreplyer = $(this).parents("#replylist>.wrap").find("input").val();
+				
+				//console.log(rno);
+				//console.log(nreply);
+				//console.log(nreplyer);
+				//loadReply();
+				
+				$.ajax({
+					beforeSend: function (jqXHR, settings) {
+			           var header = $("meta[name='_csrf_header']").attr("content");
+			           var token = $("meta[name='_csrf']").attr("content");
+			           jqXHR.setRequestHeader(header, token);
+					},
+					
+					url: "/qna/"+qno+"/replies/"+rno,
+					type: "put",
+					data: {
+						reply: nreply,
+						replyer: nreplyer
+					},
+					success: function(){
+						alert("수정되었습니다.");
+						loadReply();
+					}
+				});
+				
+			});
+			
+			
+			
+			
+			
+			
+			$(".btn-del").click(function(){
+				
+				alert("삭제되었습니다.");
+				/*
+				if( confirm("정말 삭제하시겠습니까?") ){
+					return true; //삭제 확인 버튼시 ajax처리
+				}else{
+					return false; //삭제 취소 버튼시 return false로 함수취소
+				}
+				*/
+				
+				var rno = $(this).siblings(".rno").val();
+				//console.log(rno);
+				//alert(rno);
+				
+				 $.ajax({
+					 //403 forbiden error 발생시 ajax처리 전에 beforeSend로 csrf값 보내줌
+					 beforeSend: function (jqXHR, settings) {
+			           var header = $("meta[name='_csrf_header']").attr("content");
+			           var token = $("meta[name='_csrf']").attr("content");
+			           jqXHR.setRequestHeader(header, token);
+					},
+					
+					url: "/replies/"+rno,
+					type: "delete",
+					success: function(){
+						loadReply();
+					}
+				});
+				
+			});
+			
+		});
+			
+		
+	</script>
+</html>

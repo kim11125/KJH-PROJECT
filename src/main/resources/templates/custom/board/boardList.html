@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset="UTF-8">
+		<title>자료실 :: GALAX CLONE</title>
+		 <!-- CDN으로 넣는방법 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="/css/commons.css">
+		<link rel="stylesheet" href="/css/header.css">
+		<link rel="stylesheet" href="/css/footer.css">
+		<link rel="stylesheet" href="/css/side.css">
+		<link rel="stylesheet" href="/css/content.css">
+		<link rel="stylesheet" href="/css/board.css">
+	</head>
+	<body>
+	<th:block th:insert="~{/layout/header :: header}" />
+	<section class="view-size flex between">
+		<th:block th:insert="~{/custom/aspolicy :: custom-side}" />
+		<div class="wrap">
+			<div id="title">
+				<p>자료실</p>
+			</div>
+			<div class="content">
+				<div class="wrap">
+					<ul class="flex">
+						<li>번호</li>
+						<li>구분</li>
+						<li>제목</li>
+						<li>날짜</li>
+						<li>작성자</li>
+						<li>조회수</li>
+					</ul>
+					<ol class="flex" th:each="dto, i : ${list}">
+						<li>[[${dto.bno}]]</li>
+						<li>[[${dto.category}]]</li>
+						<li>
+							<a th:href="|/custom/board/${dto.bno}|">[[${dto.subject}]]</a>
+						</li>
+						<li>[[${dto.createdDate.toLocalDate}]]</li>
+						<li>[[${dto.writer}]]</li>
+						<li>[[${dto.readCount}]]</li>
+					</ol>
+				</div>
+				
+				<!-- /////////////////페이징 처리//////////////////// -->			
+					
+					<!-- /////////////////prev///////////////// -->
+					<div class="paging-block" th:if="${page}">
+						<div class="paging">
+							<th:block class="page-direction" th:if="${page.from gt 1}">
+							<!-- page로 매핑한 페이지그룹 정보가 1보다 클때(페이지그룹이 1번이 아닐때) -->
+								<span>
+									<!-- board페이지로감 -->
+									<a href="/custom/board">
+										<i class="fas fa-angle-double-left"></i>
+									</a>
+								</span>
+								<span>
+									<!-- from(끝번호)-1만큼뜀 -->
+									<a th:href="|/custom/board?page=${page.from-1}|">
+										<i class="fas fa-angle-left"></i>
+									</a>
+								</span>
+							</th:block>
+							
+							<!-- ///////////////////////////////////// -->
+							
+							<span th:each="pno : ${ #numbers.sequence(page.from, page.to) }">
+							<a th:href="@{/custom/board(page=${pno})}" th:text="${pno}"></a>
+									<!-- 페이징은 @로함 -->
+							</span>
+								
+							<!-- ///////////////next//////////////// -->
+							<th:block class="page-direction" th:if="${page.to lt page.pageTot}">
+							<!-- 페이지그룹이 페이지토탈보다 작을때 -->
+								<span>
+									<!-- to(각 페이지의 시작번호)+1만큼 뜀 -->
+									<a th:href="|/custom/board?page=${page.to+1}|">
+										<i class="fas fa-angle-right"></i>
+									</a>
+								</span>
+								<span>
+									<!-- 총페이지수(끝번호)로 뜀 -->
+									<a th:href="|/custom/board?page=${page.pageTot}|">
+										<i class="fas fa-angle-double-right"></i>
+									</a>
+								</span>
+							</th:block>
+						</div>
+					</div>
+					<!-- /////////////////페이징 처리//////////////////// -->
+				
+				<ul class="flex end">
+					<li sec:authorize="hasRole('ROLE_ADMIN')">
+						<a href="/custom/boards/write" class="btn-write">글쓰기</a>
+					</li>
+				</ul>
+				<form method="get" name="search">
+					<div class="wrap flex end">
+						<select>
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+							<option value="ti-con">제목+내용</option>
+							<option value="writer">글쓴이</option>
+						</select>
+						<input id="bsearch" type="text">
+						<input type="image" src="/images/search.gif">
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+	</body>
+	<th:block th:insert="~{/layout/footer :: footer}" />
+</html>

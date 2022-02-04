@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+main{
+	width: 1200px;
+	height: 1250px;
+	margin: 5px auto 0;
+}
+/* ////////////////// */
+#visual .visual-area{
+	position: relative;
+	width: 1200px;
+	margin: 0 auto;
+	overflow: hidden; /* li태그 여러개에 이미지 적용시 스크롤제거 */
+}
+#visual .visual-area .images .img{
+	width: 1200px;
+	height: 400px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	/* cover는 부모영역에 꽉채움 */
+}
+/* ////////////////// */
+#visual .visual-area .bullets{
+	position: absolute;
+	bottom: 20px;
+	width: 100%;
+}
+#visual .visual-area .bullets .bullet{
+	background-color: #fff;
+	width: 18px;
+	height: 18px;
+	margin: 0 13px;
+	border-radius: 9px;
+	line-height: 18px;
+	text-align: center;
+	opacity: 0.3;
+}
+#visual .visual-area .bullets .bullet:hover{
+	cursor: pointer;
+}
+#visual .visual-area .bullets .bullet.target{
+	opacity: 0.8;
+}
+/* ////////////////// */
+#visual .visual-area:hover .btn i{
+	opacity: 0.3;
+}
+#visual .visual-area .btn i{
+	font-size: 80px;
+	position: absolute;
+	color: #fff;
+	top: 160px; /* 부모요소절반-대상크기절반 */
+	opacity: 0;
+	cursor: pointer;
+}
+#visual .visual-area .btn i.prev{
+	left: 0px;
+}
+#visual .visual-area .btn i.next{
+	right: 0px;
+}
+/* ////////////////// */
+#main{
+	width: 1200px;
+	padding: 40px 0 60px;
+}
+#youtube>.wrap p{
+	border: 1px solid #000;
+}
+/* ////////////////// */
+#main>.wrap{
+	margin-top: 40px;
+	font-size: 13px;
+	letter-spacing: -0.8px;
+}
+#main>.wrap li{
+	margin-bottom: 10px;
+}
+#main>.wrap .top{
+	border: 1px solid #e1e1e1;
+	width: 360px;
+	padding: 10px 0 0 17px;
+	height: 145px;
+}
+#main>.wrap p{
+	margin: 10px 0;
+}
+#main>.wrap p a{
+	font-size: 17px;
+	color: #818181;
+	font-weight: 700;
+}
+#main>.wrap .bottom{
+	border: 1px solid #e1e1e1;
+	margin-top: 14px;
+	width: 360px;
+	height: 144px;
+	padding: 20px;
+}
+/* ////////////////// */
+#mid-ban a{
+	width: 239px;
+	height: 343px;
+	margin-left: 2px;
+}
+/* ////////////////// */
+
+#main dl{
+	width: 319px;
+	height: 15px; 
+	display: flex; 
+	justify-content: space-between; 
+	margin-bottom: 6px;
+}
+#main dl a{
+	color: #9b9b9a;
+}
+#main dt{
+	width: 240px;
+}
+#main dd{
+	width: 73px;
+}
+
+#main>.wrap .bottom ul{
+	width: 320px;
+	height: 60px;
+	margin: 0 auto;
+}

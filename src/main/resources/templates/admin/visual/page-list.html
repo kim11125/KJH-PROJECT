@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<ol class="flex images">
+	<th:block th:each="dto, i : ${list}">
+		<li class="img"  th:attrappend="class=${' img_'+i.index}"  th:style="|background-image: url('${dto.filePath+dto.fileName}');|">
+		<!-- 이미지[[${i.index}]] -->
+		</li>
+	</th:block>
+</ol>
+<ol class="flex center bullets">
+	<th:block th:each="dto , i: ${list}">
+		<li class="bullet" ></li>
+	</th:block>
+</ol>
+<div class="btn">
+	<i class="prev fas fa-chevron-left"></i>
+	<i class="next fas fa-chevron-right"></i>
+</div>
+</html>

@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+#left-menu>.wrap{
+	width: 250px;
+	min-height: 100vh;
+	background-color: #010114;
+	color: #fff;
+}
+
+#left-menu>.wrap a{
+	color: #fff;
+}
+
+#left-menu>.wrap .menu-list{
+	padding: 20px;
+}
+
+#left-menu>.wrap .menu-list>li{
+	padding: 0.5em 0;
+	border-top: 1px solid #333;
+}
+#left-menu>.wrap .menu-list li{
+	font-size: 14px;
+}
+
+#left-menu>.wrap .menu-list>li dl dt{
+	padding: 0.5em 0;
+	border-bottom: 1px dotted rgba(200, 200, 200, 0.15);
+	font-weight: 700;
+	font-size: 1.8em;
+	
+}
+
+#left-menu>.wrap .menu-list>li dl dd{
+	margin-left: 1em;
+}
+
+
+

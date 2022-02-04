@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset="UTF-8">
+		<meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}"/>
+		<meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+		
+		<title>자료실 :: GALAX CLONE</title>
+		 <!-- CDN으로 넣는방법 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="/css/commons.css">
+		<link rel="stylesheet" href="/css/header.css">
+		<link rel="stylesheet" href="/css/footer.css">
+		<link rel="stylesheet" href="/css/side.css">
+		<link rel="stylesheet" href="/css/content.css">
+		<link rel="stylesheet" href="/css/board.css">
+		<link rel="stylesheet" href="/css/reply.css">
+		
+		<!-- include summernote css/js -->
+		<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> 
+		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+		<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
+		<!-- 서머노트를 위해 추가해야할 부분 -->
+		<script src="/summernote/summernote-lite.js"></script>
+		<script src="/summernote/lang/summernote-ko-KR.js"></script>
+		<script src="/summernote/summernote-mySetting.js"></script>
+		<link rel="stylesheet" href="/summernote/summernote-lite.css">
+		
+	</head>
+	<body id="detailPage">
+	<th:block th:insert="~{/layout/header :: header}" />
+	<section class="view-size flex between detail-form">
+		<th:block th:insert="~{/custom/aspolicy :: custom-side}" />
+			<div class="wrap">
+				<section>
+					<div id="title">
+						<p>자료실</p>
+					</div>
+				</section>
+				<section id="board-detail">
+					<div class="title">
+						<ul class="flex">
+							<li>
+								<a href="/custom/board"><img alt="목록" src="/images/list.gif"></a>
+							</li>
+							<li>
+								<span>[[${detail.subject}]]</span>
+							</li>
+							<li>
+								<span>[[${detail.writer}]]</span>
+							</li>
+							<li>
+								<span>[[${detail.createdDate.toLocalDate}]]</span>
+								<span>&nbsp;&nbsp;( [[${detail.updatedDate.toLocalDate}]] )</span>
+							</li>
+						</ul>					
+					</div>
+					<div class="content">
+						<!-- summernote태그가 적용되도록 utext -->
+						[(${detail.content})]
+					</div>
+					<div class="btn-admin">
+						<!-- 수정/삭제버튼은 ADMIN권한만 -->
+						<form th:action="|/custom/board/${detail.bno}|" method="post">
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+							<input type="hidden" name="_method" value="DELETE">
+							<button type="button" id="btn-update" sec:authorize="hasRole('ROLE_ADMIN')">수정</button>
+							<button type="submit" id="btn-del" sec:authorize="hasRole('ROLE_ADMIN')">삭제</button>
+						</form>
+					</div>
+					<script type="text/javascript">
+						$(function(){
+							//삭제버튼 클릭시 이벤트
+							$("#btn-del").click(function(){ 
+								if(confirm("정말 삭제하시겠습니까?")){
+									return true; //확인버튼을 눌렀을때 true값 리턴(삭제)
+								}else{
+									return false; //취소버튼을 눌렀을때 false값 리턴(취소)
+								}
+							});
+							
+							//"수정하기" 버튼이 클릭되면
+							$("#btn-update").click(function(){
+								$(".detail-form").hide();
+								$("#boardwrite").show();
+							});
+							
+							//취소버튼 클릭
+							$("#btn-cancel").click(function(){
+								$(".detail-form").show();
+								$("#boardwrite").hide();
+							});
+							
+						});
+					</script>
+					<div class="btn-list flex end">
+						<a href="/custom/board">목록</a>
+					</div>
+					<div class="wrap">
+						<dl class="flex">
+							<dt>다음글</dt>
+							<dd>
+								<a th:href="|/custom/board/${detail.bno+1}|">[[${detail.bno+1}]]</a>
+							</dd>					
+						</dl>
+						<dl class="flex">
+							<dt>이전글</dt>
+							<dd>
+								<a th:href="|/custom/board/${detail.bno-1}|">[[${detail.bno-1}]]</a>
+							</dd>					
+						</dl>
+					</div>
+				</section>
+			</div>
+	</section>
+	<!-- ////////////////////////////수정처리를 위한 폼/////////////////////////////// -->
+	<section th:fragment="updateform" id="boardwrite" class="view-size between">
+		<div>
+			<p id="title">자료실(수정중)</p>
+		</div>
+		<div class="board-form view-size">
+			<form method="post" th:action="|/custom/board/${detail.bno}|">
+				<table>
+					<tr>
+						<th>구분</th>
+						<td>
+							<select name="category" required="required" class="sel-cate">
+								<option value='' selected="selected" disabled="disabled"> 선택 </option>
+								<option value="공고">공고</option>
+								<option value="일반">일반</option>
+							</select>
+						</td>	
+					</tr>
+					<tr>
+						<th>작성자</th>
+						<td>
+							<select name="writer" required="required" class="sel-writer" id="writer">
+								<option value='' selected> 선택 </option>
+								<option value="최고관리자">최고관리자</option>
+								<option value="일반관리자">일반관리자</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>제목</th>
+						<td>
+							<input class="subject" name="subject" required="required" type="text" th:value="${detail.subject}">
+						</td>
+					</tr>
+					<tr>
+						<th>내용</th>
+						<td>
+							<textarea class="summernote" name="content" required="required" rows="20" cols="120">[(${detail.content})]</textarea>
+						</td>
+					</tr>
+				</table>
+				<div class="btns wrap flex">
+					<a href="/custom/board"><button type="button">목록보기</button></a>
+					<input type="hidden" name="_method" value="put">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+					<button type="submit">수정완료</button>
+					<button type="button" id="btn-cancel">취소</button>
+				</div>
+			</form>
+		</div>
+	</section>
+	</body>
+	<th:block th:insert="~{/layout/footer :: footer}" />
+</html>

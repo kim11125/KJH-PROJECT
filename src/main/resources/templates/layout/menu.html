@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<nav class="nb flex" th:fragment="menu">
+		<ul class="flex">
+			<li class="wrap">
+				<a href="#" class="header-tit">회사소개</a>
+				<ul id="sub-menu">
+					<li>
+						<a href="#">인사말</a>
+					</li>
+					<li>
+						<a href="/info/locate">찾아오시는 길</a>
+					</li>
+					<li>
+						<a href="#">판매처</a>
+					</li>
+				</ul>
+			</li>
+			<li class="wrap">
+				<a href="#" class="header-tit">제품소개</a>
+				<ul id="sub-menu">
+					<li>
+						<a href="#">그래픽카드</a>
+					</li>
+					<li>
+						<a href="#">그래픽카드</a>
+					</li>
+					<li>
+						<a href="#">SSD</a>
+					</li>
+					<li>
+						<a href="#">RAM</a>
+					</li>
+					<li>
+						<a href="#">Gaming Accessories</a>
+					</li>
+				</ul>
+			</li>
+			<li class="wrap" id="custom">
+				<a href="/custom/aspolicy" class="header-tit">고객지원</a>
+				<ul id="sub-menu">
+					<li>
+						<a href="/custom/aspolicy">A/S규정</a>
+					</li>
+					<li> <!-- Security 멤버만 접근가능 -->
+						<a href="#">A/S접수</a>
+					</li>
+					<li>
+						<a href="#">AS진행현황 조회</a>
+					</li>
+					<li>
+						<a href="#">정품시리얼조회</a>
+					</li>
+					<li>
+						<a href="#">FAQ</a>
+					</li>
+					<li>
+						<a href="/qna">고객센터</a>
+					</li>
+					<li>
+						<a href="/custom/board">자료실</a>
+					</li>
+					<li id="delivery">
+						<a href="https://www.ilogen.com/web" target="_blank"><span>배송조회</span></a>
+					</li>
+					<li>
+						<a href="#">A/S 서비스 만족도</a>
+					</li>
+				</ul>
+			</li>
+			<li class="wrap">
+				<a href="#" class="header-tit">뉴스</a>
+				<ul id="sub-menu">
+					<li>
+						<a href="#">공지사항</a>
+					</li>
+					<li>
+						<a href="#">이벤트</a>
+					</li>
+					<li>
+						<a href="#">보도자료</a>
+					</li>
+					<li>
+						<a href="#">리뷰</a>
+					</li>
+					<li>
+						<a href="#">내 PC 뽐내기(GALAXY)</a>
+					</li>
+					<li>
+						<a href="#">GALAX Model 갤러리</a>
+					</li>
+				</ul>
+			</li>
+			<li class="wrap">
+				<a href="/goods" class="header-tit">판매</a>
+				<ul id="sub-menu">
+					<li>
+						<a href="/goods">기타부품</a>
+					</li>
+					<li>
+						<a href="#">중고판매</a>
+					</li>
+					<li>
+						<a href="#">견적문의</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+</html>

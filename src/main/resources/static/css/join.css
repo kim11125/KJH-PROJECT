@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+.bsize1{width: 43px;}
+.bsize2{width: 78px;}
+.bsize3{width: 145px;}
+.bsize4{width: 350px;}
+.bsize5{width: 485px;}
+/* ///////////////////////// */
+#snsjoin{
+	border: 1px solid #d1dee2;
+}
+#snsjoin> h2{
+	height: 53px;
+	padding: 15px 20px;
+	background-color: #f8f8f8;
+}
+#snsjoin>.wrap{
+	height: 48px;
+	border-top: 1px solid #d1dee2;
+	padding: 10px 0;
+}
+#snsjoin>.wrap a{
+	width: 24px;
+	height: 24px;
+}
+#snsjoin>.wrap>.icon a:first-child{
+	margin-right: 3px;
+}
+
+#snsjoin img{
+	width: 24px;
+	height: 24px;
+}
+/* /////////////////////////// */
+#term{
+	margin: 60px 0 35px;
+}
+#term>p{
+	text-align: center;
+	color: red;
+	font-size: 12px;
+}
+#term h2, #private h2{
+	margin: 20px 0;
+}
+#term>.wrap textarea {
+	width: 1200px;
+	height: 165px;
+	background-color: #f7f7f7;
+	padding: 8px;
+	border: 1px solid #e9e9e9;
+}
+#term label, #private label{
+	margin-top: 15px;
+}
+#term label span, #private span{
+	margin-right: 5px;
+}
+#term input, #private input{
+	margin: auto 0;
+}
+/* /////////////////////////// */
+#private th, #private td{
+	border: 1px solid #d1dee2;
+	padding: 8px 5px;
+	font-size: 12px;
+}
+#private th{
+	width: 400px;
+	background-color: #e5ecef;
+	color: #383838;
+}
+#private td{
+	color: #666666;
+}
+/* /////////////////////////// */
+.btn-submit{
+	text-align: center;
+}
+#btn-join{
+	padding: 8px;
+	background-color: #ff3061;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+}
+.btn-submit a{
+	border: 1px solid #ccc;
+	padding: 7px;
+}
+/* /////////////////////////// */
+.reg-form{
+	margin-bottom: 40px;
+}
+.reg-form th{
+	width: 111px;
+	background-color: #f5f8f9;
+	border-right: 1px solid #e9e9e9;
+}
+.reg-form:nth-child(2) th{
+	width: 441px;
+}
+.reg-form td{
+	width: 1088px;
+	padding: 12px;
+}
+.reg-form tr{
+	border-bottom: 1px solid #e9e9e9;
+	border-top: 1px solid #e9e9e9;
+}
+.reg-form input{
+	background-color: #f5f8f9;
+	border: 1px solid #e9e9e9;
+	height: 25px;
+	margin-top: 5px;
+}
+.form-info{
+	padding-bottom: 5px; 
+}
+.sys th{
+	height: 30px;
+	border-right: none;
+}
+.mailing input{
+	height: 11px;
+}
+
+
+
+

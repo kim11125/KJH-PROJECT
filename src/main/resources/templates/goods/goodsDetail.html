@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title> :: GALAX CLONE</title>
+		 <!-- CDN으로 넣는방법 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="/css/commons.css">
+		<link rel="stylesheet" href="/css/header.css">
+		<link rel="stylesheet" href="/css/footer.css">
+		<link rel="stylesheet" href="/css/side.css">
+		<link rel="stylesheet" href="/css/content.css">
+		<link rel="stylesheet" href="/css/goods.css">
+		<script src="/js/goods.js"></script>
+	</head>
+	<body>
+		<th:block th:insert="~{/layout/header :: header}" />
+		<section id="goodspage" class="view-size flex between">
+			<th:block th:replace="~{/goods/goodsList :: goods-side}" />
+			<div id="goodsDetailPage">
+				<section class="flex">
+					<div id="title">
+						<p>[[${detail.title}]]</p>
+					</div>
+				</section>
+				<section class="goods-top flex between">
+					<div id="goods-img">
+						<img th:style="|background-image: url('${detail.filePath + detail.fileName}');|">
+					</div>
+					<div id="goods-subtitle">
+						<form action="/cart" method="post">
+							<ul>
+								<li>[[${detail.title}]]</li>
+								<li class="sub-title">[[${detail.subTitle}]]</li>
+								<li class="price">
+									<del>[[${detail.price}]]원</del>
+									&nbsp;<i class="fas fa-arrow-right"></i>
+									<span>&nbsp;[[${detail.price - ((detail.price / 100) * detail.discount ) }]]</span>
+									&nbsp;([[${detail.discount}]]% 할인)
+								</li>
+								<li>
+									<div class="wrap">
+										<span>수량</span>
+										<input id="count" type="text" value="1">
+										<button id="countup" type="button" onclick="countup()">+</button>
+										<button id="countdown" type="button" onclick="countdown()">-</button>
+									</div>
+									<div class="flex end btn-cart">
+										<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+										<button id="btn-cart" type="submit" onclick="cart()">장바구니 담기</button>
+									</div>
+								</li>
+							</ul>
+						</form>
+					</div>
+				</section>
+				<section class="tabs flex between">
+					<div>
+						<p onclick="godetail()">상세설명</p>
+					</div>
+					<div>
+						<p onclick="goreview()">후기</p>
+					</div>
+					<div>
+						<p onclick="goqna()">Q&amp;A</p>
+					</div>
+					<div>
+						<p onclick="goseller()">판매자정보</p>
+					</div>
+				</section>
+				<section id="goods-detail">
+					<div class="wrap">
+						<span>[[${detail.goodsDetail}]]</span>
+					</div>
+				</section>
+				<section id="goods-review">
+					<div class="wrap">
+						후기넣을거임
+					</div>
+				</section>
+				<section id="goods-qna">
+					<div class="wrap">
+						Q&A넣을거임
+					</div>
+				</section>
+				<section id="goods-seller">
+					<div class="wrap">
+						판매자정보
+					</div>
+				</section>
+			</div>
+		</section>
+		<script type="text/javascript">
+		$(function(){
+			godetail();
+			goreview();
+			goqna();
+			goseller();
+			cart();
+		});
+		
+		function godetail() {
+		  var elmnt = document.getElementById("goods-detail");
+		  elmnt.scrollIntoView();
+		}
+		
+		function goreview() {
+		  var elmnt = document.getElementById("goods-review");
+		  elmnt.scrollIntoView();
+		}
+		
+		function goqna() {
+		  var elmnt = document.getElementById("goods-qna");
+		  elmnt.scrollIntoView();
+		}
+		
+		function goseller() {
+		  var elmnt = document.getElementById("goods-seller");
+		  elmnt.scrollIntoView();
+		}
+		
+		function cart(){
+			$("#btn-cart").click(function(){
+				alert("장바구니에 담았습니다.");
+				console.log("1");
+			})
+		}
+		</script>
+	</body>
+	<th:block th:insert="~{/layout/footer :: footer}" />
+</html>

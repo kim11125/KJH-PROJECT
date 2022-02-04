@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<th:block th:fragment="adminContent(main)">
+	<head>
+    	<meta charset="UTF-8">
+		<title>관리자페이지 :: GALAX CLONE</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="/css/commons.css">
+		<link rel="stylesheet" href="/css/left.css">
+		<link rel="stylesheet" href="/css/admin.css">
+	</head>
+	<body class="flex">
+		<section id="left-menu">
+			<h1>좌측메뉴</h1>
+			<div class="wrap">
+				<ul class="menu-list">
+					<li class="home">
+						<a href="/"> HOME</a>
+					</li>
+					<li>
+						<dl>
+							<dt>상품</dt>
+							<dd>
+								<ol>
+									<li><a href="/admin/goodslist">리스트</a></li>
+									<li><a href="/admin/goodswrite">등록</a></li>
+								</ol>
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>비주얼이미지</dt>
+							<dd>
+								<ol>
+									<li><a href="/admin/visuallist">리스트</a></li>
+									<li><a href="/admin/visualpage">등록</a></li>
+								</ol>
+							</dd>
+						</dl>
+					</li>
+					
+				</ul>
+			</div>
+		</section>
+		<th:block th:replace="${main}">
+			<!-- 메인섹션이 삽입되는 영역입니다 -->
+		</th:block>
+	</body>
+</th:block>
+</html>

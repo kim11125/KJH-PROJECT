@@ -1,0 +1,26 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
+
+
+*{margin: 0; padding: 0; box-sizing: border-box; font-size: 12px;}
+*{font-family: 'Nanum Gothic', sans-serif;}
+h1{position:absolute;left: -9999px; }
+h2{font-size: 18px;color: #666;font-weight: 700;text-align: center;}
+li{list-style: none;}
+a{text-decoration: none; cursor: pointer;color: #000;}
+table{border-spacing: 0; border-collapse: collapse;}
+pre{white-space: pre-wrap;}
+
+.flex{display: flex}
+.column{flex-direction: column;}
+.center{justify-content: center;}
+.between{justify-content: space-between;}
+.row{flex-direction: row;}
+.end{justify-content: flex-end;}
+
+.view-size{width: 1200px;margin: 0 auto; padding: 50px 0 80px; height: 100%;}
+.page-tit{font-size: 24px; font-weight: 700; margin: 20px;}
+
+.header-tit{color: #000;}
+.content{height: 100%;}
+/* ////////////////////////// */

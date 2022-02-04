@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset="UTF-8">
+		<title>Q&amp;A :: GALAX CLONE</title>
+		 <!-- CDN으로 넣는방법 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="/css/commons.css">
+		<link rel="stylesheet" href="/css/header.css">
+		<link rel="stylesheet" href="/css/footer.css">
+		<link rel="stylesheet" href="/css/side.css">
+		<link rel="stylesheet" href="/css/content.css">
+		<link rel="stylesheet" href="/css/qna.css">
+	</head>
+	<body>
+	<th:block th:insert="~{/layout/header :: header}" />
+	<section class="view-size flex between">
+		<th:block th:insert="~{/custom/aspolicy :: custom-side}" />
+		<div class="wrap">
+			<section id="qnalist">
+				<div id="title">
+					<p>Q&amp;A</p>
+				</div>
+				<div class="content">
+					<div class="wrap">
+						<ul class="flex">
+							<li>번호</li>
+							<li>구분</li>
+							<li>제목</li>
+							<li>작성자</li>
+							<li>작성일</li>
+						</ul>
+						<ol class="flex" th:each="dto : ${list}">
+							<li>[[${dto.qno}]]</li>
+							<li>[[${dto.category}]]</li>
+							<li>
+								<a th:href="|/qna/${dto.qno}|">[[${dto.subject}]]</a>
+							</li>
+							<li>[[${dto.writer}]]</li>
+							<li>[[${dto.createdDate.toLocalDate}]]</li>
+						</ol>
+					</div>
+					<!-- /////////////////페이징 처리//////////////////// -->			
+					<!-- /////////////////prev///////////////// -->
+					<div class="paging-block flex" th:if="${page}">
+						<div class="paging">
+							<th:block class="page-direction" th:if="${page.from gt 1}">
+							<!-- page로 매핑한 페이지그룹 정보가 1보다 클때(페이지그룹이 1번이 아닐때) -->
+								<span>
+									<!-- qna페이지로감 -->
+									<a href="/qna">
+										<i class="fas fa-angle-double-left"></i>
+									</a>
+								</span>
+								<span>
+									<!-- from(끝번호)-1만큼뜀 -->
+									<a th:href="|/qna?page=${page.from-1}|">
+										<i class="fas fa-angle-left"></i>
+									</a>
+								</span>
+							</th:block>
+							
+							<!-- ///////////////////////////////////// -->
+							
+							
+								<span th:each="pno : ${ #numbers.sequence(page.from, page.to) }">
+								<a th:href="@{/qna(page=${pno})}" th:text="${pno}">페이지번호들어감</a>
+										<!-- 페이징은 @로함 -->
+								</span>
+							
+								
+							<!-- ///////////////next//////////////// -->
+							<th:block class="page-direction" th:if="${page.to lt page.pageTot}">
+							<!-- 페이지그룹이 페이지토탈보다 작을때 -->
+								<span>
+									<!-- to(각 페이지의 시작번호)+1만큼 뜀 -->
+									<a th:href="|/qna?page=${page.to+1}|">
+										<i class="fas fa-angle-right"></i>
+									</a>
+								</span>
+								<span>
+									<!-- 총페이지수(끝번호)로 뜀 -->
+									<a th:href="|/qna?page=${page.pageTot}|">
+										<i class="fas fa-angle-double-right"></i>
+									</a>
+								</span>
+							</th:block>
+						</div>
+					</div>
+					<!-- /////////////////페이징 처리//////////////////// -->	
+					<ul class="btn-qnawrite">
+						<li class="flex end" sec:authorize="hasRole('ROLE_USER')">
+							<a href="/qna/write">글쓰기</a>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</div>
+	</section>
+	</body>
+	<th:block th:insert="~{/layout/footer :: footer}" />
+</html>
