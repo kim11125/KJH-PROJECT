@@ -9,7 +9,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -71,12 +73,23 @@ public class MemberController {
 	
 	//회원정보 수정처리
 	@ResponseBody
-	@PutMapping("/userInfoUpdate")
+	@PutMapping("/user")
 	public void UserInfoUpdate(MemberUpdateDto dto) {
 		service.UserInfoUpdate(dto);
-		
 	}
 	
+	//회원탈퇴 페이지 이동
+	@GetMapping("/withdraw")
+	public String withdraw() {
+		return "/member/withdraw";
+	}
+	
+	//회원탈퇴처리
+	@ResponseBody
+	@DeleteMapping
+	public void withdraw(@PathVariable long mno) {
+		service.withdraw(mno);
+	}
 	
 	
 }

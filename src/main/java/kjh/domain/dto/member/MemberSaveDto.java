@@ -1,5 +1,6 @@
 package kjh.domain.dto.member;
 
+import kjh.domain.entity.MemberEntity;
 import lombok.Data;
 
 @Data
@@ -21,10 +22,10 @@ public class MemberSaveDto{
 	private String mailing;
 	private String open;
 	
-	/*
+	
 	public MemberEntity toEntity() {
 		return MemberEntity.builder()
-				.userId(id)
+				.userId(userId)
 				.pw(pw)
 				.name(name)
 				.nick(nick)
@@ -39,5 +40,5 @@ public class MemberSaveDto{
 				.build();
 		
 	}
-	*/
+	
 }

@@ -3,6 +3,7 @@ package kjh;
 import java.security.Principal;
 import java.util.stream.IntStream;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,7 +21,7 @@ import kjh.domain.entity.VisualRepository;
 import kjh.security.MemberRole;
 
 @SpringBootTest
-class KjhApplicationTests {
+class KjhProjectApplicationTests {
 	
 	@Autowired
 	private MemberEntityRepository memRepository;
@@ -63,10 +64,10 @@ class KjhApplicationTests {
 		memRepository.save(entity);
 	}
 	
-	//@Test
-	void 회원한명가입() {
+	@Test
+	void 유저한명가입() {
 		MemberEntity entity = MemberEntity.builder()
-				.userId("456")
+				.userId("as")
 				.pw(passwordEncoder.encode("456"))
 				.name("유저")
 				.nick("회원")
@@ -76,8 +77,6 @@ class KjhApplicationTests {
 				.address2("종로구")
 				.vga("1060")
 				.sn("없음")
-				.mailing("t")
-				.open("f")
 				.build();
 		
 		entity.addRole(MemberRole.USER);

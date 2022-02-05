@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>회원탈퇴 :: GALAX CLONE</title>
+		 <!-- CDN으로 넣는방법 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="/css/commons.css">
+		<link rel="stylesheet" href="/css/header.css">
+		<link rel="stylesheet" href="/css/footer.css">
+		<link rel="stylesheet" href="/css/side.css">
+		<link rel="stylesheet" href="/css/user.css">
+	</head>
+	<body>
+		<th:block th:insert="~{/layout/header :: header}" />
+		<section class="flex view-size between">
+			<div id="side">
+				<h1>사이드메뉴</h1>
+				<p>회원정보</p>
+				<ul>
+					<li>
+						<a href="/userInfo">- 회원정보수정</a>
+					</li>
+					<li>
+						<a href="/qna">- 고객센터</a>
+					</li>
+					<li>
+						<a href="https://www.ilogen.com/web" target="_blank">- 배송조회</a>
+					</li>
+					<li>
+						<a href="">- 회원탈퇴</a>
+					</li>
+				</ul>
+			</div>
+			<div id="withdraw">
+				<div class="wrap confirm">
+					<h2>탈퇴 안내</h2>
+					<p>회원탈퇴를 신청하기 전에 안내 사항을 꼭 확인해주세요.</p>
+					<div class="confirm-text">
+						<div>
+							<h3>탈퇴 후에도 게시판형 서비스에 등록한 게시물은 그대로 남아 있습니다.</h3>
+							<p>게시글 및 댓글은 탈퇴 시 자동 삭제되지 않고 그대로 남아 있습니다.</p>
+							<p>삭제를 원하는 게시글이 있다면 반드시 탈퇴 전 비공개 처리하거나 삭제하시기 바랍니다.</p>
+							<p>탈퇴 후에는 회원정보가 삭제되어 본인 여부를 확인할 수 있는 방법이 없어, 게시글을 임의로 삭제해드릴 수 없습니다.</p>
+						</div>
+					</div>
+					<div class="leave">
+						<label>
+							<input id="ck-leave" type="checkbox">
+							<span>안내 사항을 모두 확인하였으며, 이에 동의합니다.</span>
+						</label>
+						<button class="btn-leave">탈퇴하기</button>
+					</div>
+				</div>
+				<script type="text/javascript">
+				$(function(){
+					//탈퇴하기버튼 클릭 이벤트
+					$(".leave .btn-leave").click(function(){
+						if( $("#ck-leave").is(":checked") == true ){
+							//체크박스 체크된 경우에만
+							$("#withdraw .last").show();
+							$("#withdraw .confirm").hide();
+						}else{
+							alert("탈퇴 안내를 확인하고 동의해 주세요.");
+						}
+					});
+				});
+				</script>
+				<div class="wrap last">
+					<div class="last-form">
+						<input id="last-pass" name="last-pass" type="password" placeholder="비밀번호 입력">
+						<p>
+							<button class="btn-leave">탈퇴</button>
+						</p>
+					</div>
+				</div>
+				<script type="text/javascript">
+				$(function(){
+					//탈퇴버튼 클릭이벤트
+					$(".last .btn-leave").click(function(){
+						var inputpass = $("#last-pass").val();
+						var mno = $(this).siblings(".mno").val();
+						//1.비밀번호 맞게 입력한경우
+						//confirm 으로 탈퇴 확인 여부 확인
+						
+						
+						//2. 비밀번호 틀린경우
+						//alert으로 비밀번호 틀렸다고 알려줌
+						
+						console.log(inputpass);
+						console.log(mno);
+						
+						
+						
+					});
+				});
+				</script>
+			</div>
+		</section>
+	</body>
+	<th:block th:insert="~{/layout/footer :: footer}" />
+</html>

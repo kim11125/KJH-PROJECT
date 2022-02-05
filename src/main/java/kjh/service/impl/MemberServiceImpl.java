@@ -26,9 +26,11 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	//회원가입처리
 	@Override
 	public String register(MemberSaveDto dto) {
 		
+		/*
 		MemberEntity entity = MemberEntity.builder()
 				.userId(dto.getUserId())
 				.pw(passwordEncoder.encode(dto.getPw()))
@@ -43,6 +45,15 @@ public class MemberServiceImpl implements MemberService {
 				.mailing(dto.getMailing())
 				.open(dto.getOpen())
 				.build();
+		
+		entity.addRole(MemberRole.USER); //기본으로 유저롤 부여
+		 */
+		
+		MemberEntity entity;
+		
+		dto.setPw(passwordEncoder.encode(dto.getPw()));
+		
+		entity = dto.toEntity();
 		
 		entity.addRole(MemberRole.USER); //기본으로 유저롤 부여
 		
@@ -64,7 +75,15 @@ public class MemberServiceImpl implements MemberService {
 	@Transactional
 	@Override
 	public void UserInfoUpdate(MemberUpdateDto dto) {
+		dto.setPw(passwordEncoder.encode(dto.getPw()));
 		repository.findById(dto.getMno()).map(e->e.update(dto));
+	}
+	
+	//회원탈퇴처리
+	@Transactional
+	@Override
+	public void withdraw(long mno) {
+		repository.deleteById(mno);
 	}
 
 

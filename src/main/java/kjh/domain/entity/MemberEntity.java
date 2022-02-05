@@ -61,7 +61,7 @@ public class MemberEntity extends BaseEntity{
 	private String open;
 	
 	private boolean isSocial; //소셜유저 체크
-	private String userIp;
+	//private String userIp;
 	
 	@Enumerated(EnumType.STRING) //DB에 저장시 문자열로 저장
 	@ElementCollection(fetch = FetchType.EAGER)

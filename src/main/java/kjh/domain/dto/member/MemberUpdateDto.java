@@ -30,7 +30,7 @@ public class MemberUpdateDto {
 	public MemberEntity update() {
 		return MemberEntity.builder()
 				.mno(mno)
-				.userId(userId).pw(passwordEncoder.encode(pw)).name(name).nick(nick).email(email).phone(phone)
+				.userId(userId).pw(pw).name(name).nick(nick).email(email).phone(phone)
 				.address1(address1).address2(address2)
 				.vga(vga).sn(sn)
 				.mailing(mailing).open(open)

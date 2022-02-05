@@ -42,7 +42,85 @@
 }
 
 /* /////////////////////////////////// */
+#withdraw .wrap{
+	width: 880px;
+	height: 600px;
+	border: 1px solid #a9a9a9;
+	padding: 50px;
+}
+
+#withdraw>.confirm{
+	position: relative;
+}
+#withdraw>.confirm h2{
+	text-align: left;
+	font-size: 25px;
+	color: #000;
+	margin-bottom: 10px;
+}
+
+#withdraw>.confirm .confirm-text{
+	margin-top: 50px;
+}
+
+#withdraw>.confirm .confirm-text p{
+	margin-bottom: 7px;
+}
+
+#withdraw>.confirm h3{
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+#withdraw>.confirm .leave{
+	position: absolute;
+	bottom: 55px;
+	height: 60px;
+	left: 250px;
+	/*confirm 길이 - btn-leave길이 - btn-leave길이의 절반*/
+}
+
+#withdraw input[type=checkbox]{
+	width: 15px;
+	height: 15px;
+    position: relative;
+    top: 3px;
+}
+
+#withdraw span{
+	font-size: 15px;
+}
+
+.confirm .leave .btn-leave{
+	height: 20px;
+	cursor: pointer;
+}
+
 /* /////////////////////////////////// */
+
+#withdraw .last{
+	/* display: none; */
+}
+
+#withdraw .last .last-form{
+	width: 250px;
+	margin: 150px auto;
+}
+
+.last-form input,
+.last-form .btn-leave{
+	width: 250px;
+	margin: 10px 0;
+	height: 35px;
+}
+
+.last-form input{
+	padding-left: 10px;
+}
+
+.last-form .btn-leave{
+	cursor: pointer;
+}
 /* /////////////////////////////////// */
 
 
