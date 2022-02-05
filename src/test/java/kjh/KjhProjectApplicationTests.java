@@ -64,11 +64,11 @@ class KjhProjectApplicationTests {
 		memRepository.save(entity);
 	}
 	
-	@Test
+	//@Test
 	void 유저한명가입() {
 		MemberEntity entity = MemberEntity.builder()
-				.userId("as")
-				.pw(passwordEncoder.encode("456"))
+				.userId("aaa")
+				.pw(passwordEncoder.encode("aaa"))
 				.name("유저")
 				.nick("회원")
 				.email("user@user.com")
@@ -108,6 +108,12 @@ class KjhProjectApplicationTests {
 			memRepository.save(entity);
 		});
 	}
+	
+	//@Test
+	void 회원탈퇴() {
+		memRepository.deleteById((long) 16);
+	}
+	
 	
 	//자료실 글쓰기테스트
 	//@Test

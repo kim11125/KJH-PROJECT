@@ -84,12 +84,12 @@ public class MemberController {
 		return "/member/withdraw";
 	}
 	
-	//회원탈퇴처리
-	@ResponseBody
-	@DeleteMapping
-	public void withdraw(@PathVariable long mno) {
-		service.withdraw(mno);
-	}
+//	//회원탈퇴처리
+//	@ResponseBody
+//	@DeleteMapping
+//	public void withdraw(@PathVariable long mno) {
+//		service.withdraw(mno);
+//	}
 	
 	
 }

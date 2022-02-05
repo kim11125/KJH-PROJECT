@@ -14,6 +14,6 @@ public interface MemberService {
 
 	void UserInfoUpdate(MemberUpdateDto dto);
 
-	void withdraw(long mno);
+//	void withdraw(long mno);
 
 }

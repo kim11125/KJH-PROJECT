@@ -79,12 +79,12 @@ public class MemberServiceImpl implements MemberService {
 		repository.findById(dto.getMno()).map(e->e.update(dto));
 	}
 	
-	//회원탈퇴처리
-	@Transactional
-	@Override
-	public void withdraw(long mno) {
-		repository.deleteById(mno);
-	}
+//	//회원탈퇴처리
+//	@Transactional
+//	@Override
+//	public void withdraw(long mno) {
+//		repository.deleteById(mno);
+//	}
 
 
 }
