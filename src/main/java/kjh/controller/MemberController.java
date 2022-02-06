@@ -87,7 +87,7 @@ public class MemberController {
 	//비밀번호체크
 	@PostMapping("/pwchk")
 	public String pwchk() {
-		return null;
+		return  null;
 	}
 	
 //	//회원탈퇴처리
