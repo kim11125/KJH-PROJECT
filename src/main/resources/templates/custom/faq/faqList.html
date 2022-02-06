@@ -7,6 +7,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		 <!-- CDN으로 넣는방법 -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+		
 		<link rel="stylesheet" href="/css/commons.css">
 		<link rel="stylesheet" href="/css/header.css">
 		<link rel="stylesheet" href="/css/footer.css">
@@ -18,25 +19,59 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	<th:block th:insert="~{/layout/header :: header}" />
 	<section class="view-size flex between">
 		<th:block th:insert="~{/custom/aspolicy :: custom-side}" />
-		<div class="wrap">
+		<div class="wrap" id="faq">
 			<div id="title">
 				<p>FAQ</p>
 			</div>
-			<div sec:authorize="hasRole('ROLE_ADMIN')" class="flex end">
+			<div id="faq-write" sec:authorize="hasRole('ROLE_ADMIN')" class="flex end">
 				<p>
 					<a href="/faq/write">글쓰기</a>
 				</p>
 			</div>
-			<div>
-				<ul class="flex">
-					<li>아이콘</li>
-					<li>제목</li>
-					<li>화살표버튼</li>
-				</ul>
-			</div>
-			<div>
-				글
-			</div>
+			<section class="wrap">
+				<div class="faq-title">
+					<ul class="flex wrap between">
+						<li>
+							<img alt="icon-search" src="/images/fsearch.gif">
+						</li>
+						<li class="tit">제목이들어갈자리애오</li>
+						<li>
+							<i class="fas fa-chevron-down"></i>
+						</li>
+					</ul>
+				</div>
+				<div class="faq-content">
+					content가ㅏ 들어갈자리에오
+				</div>
+				<div class="faq-title">
+					<ul class="flex wrap between">
+						<li>
+							<img alt="icon-search" src="/images/fsearch.gif">
+						</li>
+						<li class="tit">제목이들어갈자리애오</li>
+						<li>
+							<i class="fas fa-chevron-down"></i>
+						</li>					
+					</ul>
+				</div>
+				<div class="faq-content">
+					content가ㅏ 들어갈자리에오
+				</div>
+				<div class="faq-title">
+					<ul class="flex wrap between">
+						<li>
+							<img alt="icon-search" src="/images/fsearch.gif">
+						</li>
+						<li class="tit">제목이들어갈자리애오</li>
+						<li>
+							<i class="fas fa-chevron-down"></i>
+						</li>					
+					</ul>
+				</div>
+				<div class="faq-content">
+					content가ㅏ 들어갈자리에오
+				</div>
+			</section>
 		</div>
 	</section>
 	</body>
