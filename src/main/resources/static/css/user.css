@@ -102,6 +102,10 @@
 	display: none;
 }
 
+#withdraw .last h2{
+	font-size: 35px;
+}
+
 #withdraw .last .last-form{
 	width: 250px;
 	margin: 150px auto;

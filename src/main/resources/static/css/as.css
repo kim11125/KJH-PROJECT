@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+#as-content .wrap{
+	margin-top: 60px;
+}
+
+#as-content .wrap h2{
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+#as-content .wrap h3{
+	margin: 23px 0 8px 0;
+	font-size: 16px;
+	color: #666;
+}
+
+#as-content .wrap b{
+	font-size: 17px;
+	color: #666;
+}
+
+#as-content .wrap p{
+	font-size: 15px;
+}
+/* //////////////////////////// */
+
+/* //////////////////////////// */

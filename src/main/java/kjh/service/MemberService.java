@@ -16,6 +16,6 @@ public interface MemberService {
 
 	String withdraw(MyUserDetails user, Model model);
 
-//	void withdraw(long mno);
+	void withdraw(long mno);
 
 }

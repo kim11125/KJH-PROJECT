@@ -84,18 +84,18 @@ public class MemberController {
 		return service.withdraw(user, model);
 	}
 	
-	//비밀번호체크
-	@PostMapping("/pwchk")
-	public String pwchk() {
-		return  null;
-	}
-	
-//	//회원탈퇴처리
-//	@ResponseBody
-//	@DeleteMapping
-//	public void withdraw(@PathVariable long mno) {
-//		service.withdraw(mno);
+//	//비밀번호체크
+//	@PostMapping("/pwchk")
+//	public String pwchk() {
+//		return  null;
 //	}
+	
+	//회원탈퇴처리
+	@ResponseBody
+	@DeleteMapping("/withdraw/{mno}")
+	public void withdraw(@PathVariable long mno) {
+		service.withdraw(mno);
+	}
 	
 	
 }

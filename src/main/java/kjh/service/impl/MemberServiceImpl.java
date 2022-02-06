@@ -3,6 +3,7 @@ package kjh.service.impl;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -86,12 +87,12 @@ public class MemberServiceImpl implements MemberService {
 		return "/member/withdraw";
 	}
 	
-//	//회원탈퇴처리
-//	@Transactional
-//	@Override
-//	public void withdraw(long mno) {
-//		repository.deleteById(mno);
-//	}
+	//회원탈퇴처리
+	@Override
+	public void withdraw(long mno) {
+		repository.deleteById(mno);
+		SecurityContextHolder.clearContext();
+	}
 
 
 }

@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
+		<meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}"/>
+		<meta name="_csrf_header" content="X-CSRF-TOKEN"/>
 		<title>회원탈퇴 :: GALAX CLONE</title>
 		<!-- CDN으로 넣는방법 -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -10,6 +12,7 @@
 		<link rel="stylesheet" href="/css/footer.css">
 		<link rel="stylesheet" href="/css/side.css">
 		<link rel="stylesheet" href="/css/user.css">
+		<link rel="stylesheet" href="/css/content.css">
 	</head>
 	<body>
 		<th:block th:insert="~{/layout/header :: header}" />
@@ -33,15 +36,17 @@
 				</ul>
 			</div>
 			<div id="withdraw">
+				<div id="title">
+					<p>회원탈퇴</p>
+				</div>
 				<div class="wrap confirm">
 					<h2>탈퇴 안내</h2>
 					<p>회원탈퇴를 신청하기 전에 안내 사항을 꼭 확인해주세요.</p>
 					<div class="confirm-text">
 						<div>
-							<h3>탈퇴 후에도 게시판형 서비스에 등록한 게시물은 그대로 남아 있습니다.</h3>
-							<p>게시글 및 댓글은 탈퇴 시 자동 삭제되지 않고 그대로 남아 있습니다.</p>
-							<p>삭제를 원하는 게시글이 있다면 반드시 탈퇴 전 비공개 처리하거나 삭제하시기 바랍니다.</p>
-							<p>탈퇴 후에는 회원정보가 삭제되어 본인 여부를 확인할 수 있는 방법이 없어, 게시글을 임의로 삭제해드릴 수 없습니다.</p>
+							<h3>탈퇴하게되면?</h3>
+							<p>게시글 및 댓글은 탈퇴 시 자동 삭제됩니다.</p>
+							<p>삭제된 게시글 및 댓글은 복구불가합니다.</p>
 						</div>
 					</div>
 					<div class="leave">
@@ -67,32 +72,61 @@
 				});
 				</script>
 				<div class="wrap last">
-					<form action="/pwchk" method="post">
-						<div class="last-form">
-							<input id="last-pass" name="last-pass" type="password" placeholder="비밀번호 입력">
-							<p>
-								<!-- <input id="userpass" type="hidden" th:value="${user.pw}"> -->
-								<button type="submit" class="btn-leave">탈퇴</button>
-							</p>
-						</div>
-					</form>
+					<h2>탈퇴하기</h2>
+					<div class="last-form">
+						<input id="pass1" name="pass1" type="password" placeholder="비밀번호 입력">
+						<input id="pass2" name="pass2" type="password" placeholder="비밀번호 한번 더 입력">
+						<p>
+							<input class="mno" type="hidden" th:value="${user.mno}">
+							<button type="button" class="btn-leave">탈퇴</button>
+						</p>
+					</div>
 				</div>
 				<script type="text/javascript">
 				$(function(){
 					//탈퇴버튼 클릭이벤트
 					$(".last .btn-leave").click(function(){
-						var inputpass = $("#last-pass").val();
-						var userpass = pa$("#userpass").val();
+						var pass1 = $("#pass1").val();
+						var pass2 = $("#pass2").val();
+						var mno = $(this).siblings(".mno").val();
+						
+						//console.log(mno);
+						
+						if(pass1 == pass2){
+							
+							$.ajax({
+								beforeSend: function (jqXHR, settings) {
+						           var header = $("meta[name='_csrf_header']").attr("content");
+						           var token = $("meta[name='_csrf']").attr("content");
+						           jqXHR.setRequestHeader(header, token);
+								},
+								
+								url:"/withdraw/"+mno,
+								type:"delete",
+								success:function(){
+									window.location.href="/";
+								}
+							});
+							
+						}else{
+							alert("비밀번호가 일치하지않습니다.");
+						}
+						
+						
+						/*
+						//var userpass = pa$("#userpass").val();
+						
 						//1.비밀번호 맞게 입력한경우
 						//confirm 으로 탈퇴 확인 여부 확인
 						
 						//2. 비밀번호 틀린경우
 						//alert으로 비밀번호 틀렸다고 알려줌
 						
-						/* 
+						 
 						console.log(inputpass);
 						console.log(userpass);
 						*/
+						
 						
 						
 					});
