@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,7 +31,6 @@ public class CartEntity extends BaseEntity{
 	private int ea;
 	@Column(nullable = false)
 	private long price;
-	
 	
 	@JoinColumn(name = "gno")
 	@ManyToOne

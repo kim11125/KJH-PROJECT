@@ -14,6 +14,8 @@ public interface MemberService {
 
 	void UserInfoUpdate(MemberUpdateDto dto);
 
+	String withdraw(MyUserDetails user, Model model);
+
 //	void withdraw(long mno);
 
 }

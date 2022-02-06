@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import kjh.domain.dto.qna.QnaUpdateDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

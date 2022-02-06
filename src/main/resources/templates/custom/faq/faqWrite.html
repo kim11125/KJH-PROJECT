@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset="UTF-8">
+		<meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}"/>
+		<meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+		
+		<title>자주 물어보는 질문 :: GALAX CLONE</title>
+		 <!-- CDN으로 넣는방법 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="/css/commons.css">
+		<link rel="stylesheet" href="/css/header.css">
+		<link rel="stylesheet" href="/css/footer.css">
+		<link rel="stylesheet" href="/css/side.css">
+		<link rel="stylesheet" href="/css/content.css">
+		<link rel="stylesheet" href="/css/board.css">
+		
+		<!-- include summernote css/js -->
+		<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> 
+		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+		<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
+		<!-- 서머노트를 위해 추가해야할 부분 -->
+		<script src="/summernote/summernote-lite.js"></script>
+		<script src="/summernote/lang/summernote-ko-KR.js"></script>
+		<script src="/summernote/summernote-mySetting.js"></script>
+		<link rel="stylesheet" href="/summernote/summernote-lite.css">
+		
+	</head>
+	<body>
+	<th:block th:insert="~{/layout/header :: header}" />
+	<section id="boardwrite" class="view-size between">
+		<div>
+			<p id="title">자주 물어보는 질문</p>
+		</div>
+		<div class="board-form view-size">
+			<form action="/faq/write" method="post">
+				<table>
+					<tr>
+						<th>제목</th>
+						<td>
+							<input class="subject" name="subject" required="required" type="text">
+						</td>
+					</tr>
+					<tr>
+						<th>내용</th>
+						<td>
+							<textarea class="summernote" name="content" required="required" rows="20" cols="120"></textarea>
+						</td>
+					</tr>
+				</table>
+				<div class="btns flex">
+					<a href="/faq"><button type="button">취소</button></a>
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+					<button type="submit">작성완료</button>
+				</div>
+			</form>
+		</div>
+	</section>
+	<th:block th:insert="~{/layout/footer :: footer}" />
+	</body>
+</html>

@@ -67,8 +67,8 @@ class KjhProjectApplicationTests {
 	//@Test
 	void 유저한명가입() {
 		MemberEntity entity = MemberEntity.builder()
-				.userId("aaa")
-				.pw(passwordEncoder.encode("aaa"))
+				.userId("444")
+				.pw(passwordEncoder.encode("444"))
 				.name("유저")
 				.nick("회원")
 				.email("user@user.com")
@@ -82,6 +82,12 @@ class KjhProjectApplicationTests {
 		entity.addRole(MemberRole.USER);
 		
 		memRepository.save(entity);
+	}
+	
+	
+	//@Test
+	void 회원탈퇴() {
+		memRepository.deleteById((long) 17);
 	}
 	
 	
@@ -109,13 +115,6 @@ class KjhProjectApplicationTests {
 		});
 	}
 	
-	//@Test
-	void 회원탈퇴() {
-		memRepository.deleteById((long) 16);
-	}
-	
-	
-	//자료실 글쓰기테스트
 	//@Test
 	void 자료실테스트() {
 		IntStream.rangeClosed(1, 500).forEach(i->{

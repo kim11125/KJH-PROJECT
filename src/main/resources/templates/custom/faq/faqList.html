@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset="UTF-8">
+		<title>자주 물어보는 질문 :: GALAX CLONE</title>
+		 <!-- CDN으로 넣는방법 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="/css/commons.css">
+		<link rel="stylesheet" href="/css/header.css">
+		<link rel="stylesheet" href="/css/footer.css">
+		<link rel="stylesheet" href="/css/side.css">
+		<link rel="stylesheet" href="/css/content.css">
+		<link rel="stylesheet" href="/css/faq.css">
+	</head>
+	<body>
+	<th:block th:insert="~{/layout/header :: header}" />
+	<section class="view-size flex between">
+		<th:block th:insert="~{/custom/aspolicy :: custom-side}" />
+		<div class="wrap">
+			<div id="title">
+				<p>FAQ</p>
+			</div>
+			<div sec:authorize="hasRole('ROLE_ADMIN')" class="flex end">
+				<p>
+					<a href="/faq/write">글쓰기</a>
+				</p>
+			</div>
+			<div>
+				<ul class="flex">
+					<li>아이콘</li>
+					<li>제목</li>
+					<li>화살표버튼</li>
+				</ul>
+			</div>
+			<div>
+				글
+			</div>
+		</div>
+	</section>
+	</body>
+	<th:block th:insert="~{/layout/footer :: footer}" />
+</html>

@@ -99,7 +99,7 @@
 /* /////////////////////////////////// */
 
 #withdraw .last{
-	/* display: none; */
+	display: none;
 }
 
 #withdraw .last .last-form{

@@ -80,8 +80,14 @@ public class MemberController {
 	
 	//회원탈퇴 페이지 이동
 	@GetMapping("/withdraw")
-	public String withdraw() {
-		return "/member/withdraw";
+	public String withdraw(@AuthenticationPrincipal MyUserDetails user, Model model) {
+		return service.withdraw(user, model);
+	}
+	
+	//비밀번호체크
+	@PostMapping("/pwchk")
+	public String pwchk() {
+		return null;
 	}
 	
 //	//회원탈퇴처리

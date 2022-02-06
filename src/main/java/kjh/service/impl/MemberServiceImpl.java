@@ -78,6 +78,13 @@ public class MemberServiceImpl implements MemberService {
 		dto.setPw(passwordEncoder.encode(dto.getPw()));
 		repository.findById(dto.getMno()).map(e->e.update(dto));
 	}
+
+	@Override
+	public String withdraw(MyUserDetails user, Model model) {
+		MemberEntity result = repository.findById(user.getMno()).get();
+		model.addAttribute("user", result);
+		return "/member/withdraw";
+	}
 	
 //	//회원탈퇴처리
 //	@Transactional

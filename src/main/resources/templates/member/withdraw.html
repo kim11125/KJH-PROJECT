@@ -1,9 +1,9 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
 		<title>회원탈퇴 :: GALAX CLONE</title>
-		 CDN으로 넣는방법
+		<!-- CDN으로 넣는방법 -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="/css/commons.css">
 		<link rel="stylesheet" href="/css/header.css">
@@ -67,28 +67,32 @@
 				});
 				</script>
 				<div class="wrap last">
-					<div class="last-form">
-						<input id="last-pass" name="last-pass" type="password" placeholder="비밀번호 입력">
-						<p>
-							<button class="btn-leave">탈퇴</button>
-						</p>
-					</div>
+					<form action="/pwchk" method="post">
+						<div class="last-form">
+							<input id="last-pass" name="last-pass" type="password" placeholder="비밀번호 입력">
+							<p>
+								<!-- <input id="userpass" type="hidden" th:value="${user.pw}"> -->
+								<button type="submit" class="btn-leave">탈퇴</button>
+							</p>
+						</div>
+					</form>
 				</div>
 				<script type="text/javascript">
 				$(function(){
 					//탈퇴버튼 클릭이벤트
 					$(".last .btn-leave").click(function(){
 						var inputpass = $("#last-pass").val();
+						var userpass = pa$("#userpass").val();
 						//1.비밀번호 맞게 입력한경우
 						//confirm 으로 탈퇴 확인 여부 확인
-						
 						
 						//2. 비밀번호 틀린경우
 						//alert으로 비밀번호 틀렸다고 알려줌
 						
+						/* 
 						console.log(inputpass);
-						console.log(mno);
-						
+						console.log(userpass);
+						*/
 						
 						
 					});
@@ -98,4 +102,4 @@
 		</section>
 	</body>
 	<th:block th:insert="~{/layout/footer :: footer}" />
-</html> -->
+</html>
