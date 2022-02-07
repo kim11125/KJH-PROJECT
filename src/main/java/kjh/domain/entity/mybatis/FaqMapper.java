@@ -7,13 +7,16 @@ import org.apache.ibatis.annotations.Mapper;
 import kjh.domain.dto.mybatis.FaqDto;
 
 @Mapper
-public interface FaqEntityMapper {
+public interface FaqMapper {
 	
 	//faq list
 	List<FaqEntity> findAll();
 
 	//faq 저장
 	void save(FaqDto dto);
+	
+	//faq 삭제
+	void deleteById(long fno);
 	
 
 	

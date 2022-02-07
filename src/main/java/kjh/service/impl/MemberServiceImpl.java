@@ -31,25 +31,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String register(MemberSaveDto dto) {
 		
-		/*
-		MemberEntity entity = MemberEntity.builder()
-				.userId(dto.getUserId())
-				.pw(passwordEncoder.encode(dto.getPw()))
-				.name(dto.getName())
-				.nick(dto.getNick())
-				.email(dto.getEmail())
-				.phone(dto.getPhone())
-				.address1(dto.getAddress1())
-				.address2(dto.getAddress2())
-				.vga(dto.getVga())
-				.sn(dto.getSn())
-				.mailing(dto.getMailing())
-				.open(dto.getOpen())
-				.build();
-		
-		entity.addRole(MemberRole.USER); //기본으로 유저롤 부여
-		 */
-		
 		MemberEntity entity;
 		
 		dto.setPw(passwordEncoder.encode(dto.getPw()));

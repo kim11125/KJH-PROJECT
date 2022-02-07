@@ -31,7 +31,7 @@ public class SecutityConfig extends WebSecurityConfigurerAdapter{
 			//user 권한만 접근가능
 			.antMatchers("/member/**", "/user/**").hasRole("USER")
 			//admin 권한만 접근가능
-			.antMatchers("/admin/**", "/custom/boards/**").hasRole("ADMIN")
+			.antMatchers("/admin/**", "/custom/boards/**", "/faq/**").hasRole("ADMIN")
 			//로그인 안한경우에만 접근가능
 			.antMatchers("/loginpage", "/join/**", "/register").anonymous()
 			//나머지는 인증필수

@@ -10,4 +10,6 @@ public interface FaqService {
 
 	String faqlist(FaqDto dto, Model model);
 
+	String faqdelete(long fno);
+
 }

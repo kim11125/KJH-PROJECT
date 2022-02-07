@@ -8,11 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import kjh.domain.entity.BaseEntity;
-import lombok.Data;
+import lombok.Getter;
 
 @Table(name = "faq")
 @Entity
-@Data
+@Getter
 public class FaqEntity extends BaseEntity{
 
 	@Id

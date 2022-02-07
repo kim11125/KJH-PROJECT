@@ -34,10 +34,10 @@
 								<li>[[${detail.title}]]</li>
 								<li class="sub-title">[[${detail.subTitle}]]</li>
 								<li class="price">
-									<del>[[${detail.price}]]원</del>
-									&nbsp;<i class="fas fa-arrow-right"></i>
-									<span>&nbsp;[[${detail.price - ((detail.price / 100) * detail.discount ) }]]</span>
-									&nbsp;([[${detail.discount}]]% 할인)
+									<del th:if="${detail.discount}">[[${detail.price}]]원</del>
+									<span th:if="${detail.discount}">&nbsp;<i class="fas fa-arrow-right"></i></span>
+									<span>&nbsp;[[${detail.price - ((detail.price / 100) * detail.discount ) }]]원</span>
+									<span th:if="${detail.discount}">&nbsp;([[${detail.discount}]]% 할인)</span>
 								</li>
 								<li>
 									<div class="wrap">

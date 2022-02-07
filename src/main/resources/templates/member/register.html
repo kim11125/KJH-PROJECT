@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 	<head>
 		<meta charset="UTF-8">
+		<meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}"/>
+		<meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+		
 		<title>회원가입 :: GALAX CLONE</title>
 		 <!-- CDN으로 넣는방법 -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -11,11 +15,12 @@
 		<link rel="stylesheet" href="/css/footer.css">
 		<link rel="stylesheet" href="/css/side.css">
 		<link rel="stylesheet" href="/css/join.css">
+		<!-- <script src="/js/reg.js"></script> -->
 	</head>
 	<body>
 		<th:block th:insert="~{/layout/header :: header}" />
 		<section class="view-size">
-			<form action="/register" method="post">
+			<form action="/register" method="post" onsubmit="allchk()">
 				<div class="reg-form">
 					<table>
 						<tr>
@@ -24,8 +29,9 @@
 								<span>아이디</span>
 							</th>
 							<td>
-								<span class="form-info">영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요.<br></span>
+								<span class="form-info">영문자, 숫자, _ 만 입력 가능. 최소 6자이상 입력하세요.<br></span>
 								<input id="id" name="userId" type="text" required="required" class="bsize3">
+								<div class="check" id="id_chk"></div>
 							</td>
 						</tr>
 						<tr>
@@ -34,7 +40,9 @@
 								<span>비밀번호</span>
 							</th>
 							<td>
-								<input id="pass1" name="pw" type="password" required="required" class="bsize3">
+								<p>숫자, 문자, 특수문자를 조합하여 8자~16자로 구성해주세요.</p>
+								<input class="pw bsize3" id="pass1" name="pw" type="password" required="required">
+								<div id="pw_chk"></div>
 							</td>
 						</tr>
 						<tr>
@@ -43,7 +51,8 @@
 								<span>비밀번호 확인</span>
 							</th>
 							<td>
-								<input id="pass2" type="password" required="required" class="bsize3">
+								<input class="pw bsize3" id="pass2" type="password" required="required">
+								<span id="eq_pw"></span>
 							</td>
 						</tr>
 					</table>
@@ -57,6 +66,7 @@
 							</th>
 							<td>
 								<input id="name" name="name" type="text" required="required" class="bsize2">
+								<div id="name_chk"></div>
 							</td>
 						</tr>
 						<tr>
@@ -65,9 +75,10 @@
 								<span>닉네임</span>
 							</th>
 							<td>
-								<span class="form-info">공백없이 한글,영문,숫자만 입력 가능 (한글2자, 영문4자 이상)<br>
+								<span class="form-info">공백없이 한글, 영문, 숫자, 특수문자 입력 가능 (3자이상 15자 이하)<br>
 								닉네임을 바꾸시면 앞으로 60일 이내에는 변경 할 수 없습니다.<br></span>
 								<input id="nick" name="nick" type="text" required="required" class="bsize2">
+								<div id="nick_chk"></div>
 							</td>
 						</tr>
 						<tr>
@@ -77,6 +88,7 @@
 							</th>
 							<td>
 								<input id="email" name="email" type="text" required="required" class="bsize5">
+								<div id="email_chk"></div>
 							</td>
 						</tr>
 						<tr>
@@ -85,7 +97,9 @@
 								<span>전화번호</span>
 							</th>
 							<td>
+								<span>하이픈(-)을 제외한 숫자만 입력해주세요.</span><br>
 								<input id="phone" name="phone" type="text" required="required" class="bsize3">
+								<div id="phone_chk"></div>
 							</td>
 						</tr>
 						<tr>
@@ -154,91 +168,111 @@
 			</form>
 		</section>
 	</body>
-	<!-- <script type="text/javascript">
-		$(function(){
-			$("#email");
-			$("#pass1");
-			$("#pass2");
-		});
+	<script type="text/javascript">
+	
+		//id 패턴 확인
+			$("#id").focusout(function(){
+				var id = $("#id").val().trim();
+				var idpattern = /^[a-zA-Z0-9_-]{6,}$/;
+				
+				if(id.length < 6){
+					$("#id_chk").html("*아이디는 최소 6자이상 입력하세요.").css("color", "red");
+				}else if(!idpattern.test(id)){
+					$("#id_chk").html("*영문자, 숫자, _ 만 입력 가능합니다.").css("color", "red");
+				}else{
+					$("#id_chk").html("*사용가능한 아이디입니다.").css("color", "#008000");
+				}
+			})
 		
-		function emailOut(){
-			//이메일주소@도메인.com
-			var pattern  = /^[0-9a-zA-Z]([-_]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_]?[0-9a-zA-Z])*[.][a-zA-Z]{2,3}$/i;
-			var email=$(this).val().trim();
-			var result = pattern.test(email);
-			//alert(result);
-			if(result){
-				/*$(this).parent().siblings(".result").text("패턴에 맞는 이메일 입니다.");
-				$(this).parent().siblings(".result").css({"color":"green","padding-top":"15px"});
-				$("#pass").removeAttr("disabled");*/
-				emailCheck(email);
-				/*$("#pass").attr("disabled",false);*/
-			}else{
-				$(this).parent().siblings(".result").text("* 이메일 형식이 아닙니다.");
-				$(this).parent().siblings(".result").css({"color":"red","padding-top":"15px"});
-				$("#pass").attr("disabled",true);
-				return;
-			}
-		}
 		
-		function emailCheck(email_data){
-			$.ajax({
-				url:"email-check",
-				type: "post",
-				data:{
-					email:email_data
-					},
-				success: function(result){
-					/*alert(typeof result);*/
-					if(result=="true"){//이미존재하는 이메일
-						$("#email").parent().siblings(".result").text("* 이미 존재하거나 탈퇴한 회원입니다.").css("color","red");
-						$("#pass").attr("disabled",true);
-					}else{//사용가능한 이메일
-						$("#email").parent().siblings(".result").text("사용 가능한 이메일입니다.").css("color","green");
-						$("#pass").removeAttr("disabled");
+		//비밀번호 패턴 확인
+			$("#pass1").focusout(function(){
+				var pw = $("#pass1").val().trim();
+				var pwpattern = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+				
+				if(pw.length < 8 || pw.length > 16){
+					$("#pw_chk").html("*패스워드 길이를 체크하세요.").css("color", "red");
+				}else if(!pwpattern.test(pw)){
+					$("#pw_chk").html("*숫자, 문자, 특수문자를 조합하여 8자~16자로 구성해주세요.").css("color", "red");
+				}else{
+					$("#pw_chk").html("*사용가능한 비밀번호입니다.").css("color", "#008000");
+				}
+				
+			})
+		
+		
+		//비밀번호 일치 확인
+			$("#pass2").focusout(function(){
+				
+				var pass1 = $("#pass1").val();
+				var pass2 = $("#pass2").val();
+				
+				if(pass1 != "" || pass2 != ""){
+					if(pass1 == pass2){
+						$("#eq_pw").html('*비밀번호가 일치합니다.');
+						$("#eq_pw").css('color', '#008000');
+					}else{
+						$("#eq_pw").html('*비밀번호가 불일치합니다.');
+						$("#eq_pw").css('color', 'red');
 					}
 				}
-			});
-		}
+				
+			})
 		
 		
-		function pass2Out(){
-			var pass1=$("#pass1").val().trim();
-			var pass2=$("#pass2").val().trim();
-			
-			if(pass!=pass2){
-				$(this).siblings(".error").text("* 비밀번호가 일치하지 않습니다.").css("color","red");
-			}else{
-				$(this).siblings(".error").text("비밀번호 확인 완료!").css("color","green");
-				$("#btn-submit").removeAttr("disabled");
-			}
-		}
+		//이름 패턴 확인
+			$("#name").focusout(function(){
+				var name = $("#name").val().trim();
+				var namepattern = /^[가-힣a-zA-Z]+$/;
+				
+				if(!namepattern.test(name)){
+					$("#name_chk").html("*이름은 한글 또는 영문만 가능합니다.").css("color", "red");
+				}else{
+					$("#name_chk").html("*확인완료").css("color", "#008000");
+				}
+			})
 		
-		function passOut(){
-			var pattern1=/.*(?=.*[/!@#$%^&+=])/;
-			var pattern2=/.*(?=.*[a-zA-Z])/;
-			var pattern3=/.*(?=.*\d)/;
-			var pass=$("#pass").val().trim();
-			/*var v=document.getElementById("pass").value;*/
-			if(pass.length<8 || pass.length>16){
-				$(this).siblings(".error").text("* 패스워드 길이를 체크하세요!").css("color","red");
-				$("#pass2").attr("disabled",true);
-			/* }else if(!pattern1.test(pass)){
-				$(this).siblings(".error").text("* 특수문자가 포함 되어야합니다.").css("color","red");
-				$("#pass2").attr("disabled",true);
-			}else if(!pattern2.test(pass)){
-				$(this).siblings(".error").text("* 영문자가 포함 되어야합니다.").css("color","red");
-				$("#pass2").attr("disabled",true);
-			}else if(!pattern3.test(pass)){
-				$(this).siblings(".error").text("* 숫자가 포함 되어야합니다.").css("color","red");
-				$("#pass2").attr("disabled",true);
-			}else{ */
-				$(this).siblings(".error").text("패스워드 확인").css("color","green");
-				$("#pass2").attr("disabled",false);
-			}
-		}
-	</script> -->
-	<script>
+		
+		//닉네임 패턴 확인
+			$("#nick").focusout(function(){
+				var nick = $("#nick").val().trim();
+				
+				if(nick.length < 3 || nick.length > 15){
+					$("#nick_chk").html("*3자이상 15자 이하로 입력해주세요.").css("color", "red");
+				}else{
+					$("#nick_chk").html("*사용가능한 닉네임입니다.").css("color", "#008000");
+				}
+			})
+		
+		
+		//이메일 패턴 확인
+			$("#email").focusout(function(){
+				var email = $("#email").val().trim();
+				var emailpattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+				
+				if(!emailpattern.test(email)){
+					$("#email_chk").html("*형식에 맞지않는 이메일입니다.").css("color", "red");
+				}else{
+					$("#email_chk").html("*형식에 맞는 이메일입니다.").css("color", "#008000");
+				}
+			})
+		
+		
+		//전화번호 패턴 확인
+			$("#phone").focusout(function(){
+				var phone = $("#phone").val();
+				var phonepattern = /^[0-9]{2,3}[0-9]{3,4}[0-9]{4}$/;
+				
+				if(!phonepattern.test(phone)){
+					$("#phone_chk").html("*하이픈(-)을 제외한 숫자만 입력해주세요.").css("color", "red");
+				}else{
+					$("#phone_chk").html("*확인완료").css("color", "#008000");
+				}
+			})
+		
+		
+		
+
 	function findAddr(){ //주소검색 버튼클릭하면
 		new daum.Postcode({
 	        oncomplete: function(data) { //선택시 입력값 세팅
@@ -261,6 +295,8 @@
 	        }
 	    }).open();
 	}
-	</script>	
+
+
+	</script>
 	<th:block th:insert="~{/layout/footer :: footer}" />
 </html>

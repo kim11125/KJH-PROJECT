@@ -2,8 +2,10 @@ package kjh.controller.mybatis;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kjh.domain.dto.mybatis.FaqDto;
 import kjh.service.FaqService;
@@ -33,4 +35,10 @@ public class FaqController {
 		return service.faqwrite(dto);
 	}
 	
+	//faq삭제처리
+	@ResponseBody
+	@DeleteMapping("/faq/delete/{fno}")
+	public String faqdelete(long fno) {
+		return service.faqdelete(fno);
+	}
 }
