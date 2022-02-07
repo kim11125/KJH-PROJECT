@@ -19,20 +19,29 @@
 				<div class="reg-form">
 					<table>
 						<tr>
-							<th>아이디</th>
+							<th>
+								<span id="required">*</span>
+								<span>아이디</span>
+							</th>
 							<td>
 								<span class="form-info">영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요.<br></span>
 								<input id="id" name="userId" type="text" required="required" class="bsize3">
 							</td>
 						</tr>
 						<tr>
-							<th>비밀번호</th>
+							<th>
+								<span id="required">*</span>
+								<span>비밀번호</span>
+							</th>
 							<td>
 								<input id="pass1" name="pw" type="password" required="required" class="bsize3">
 							</td>
 						</tr>
 						<tr>
-							<th>비밀번호 확인</th>
+							<th>
+								<span id="required">*</span>
+								<span>비밀번호 확인</span>
+							</th>
 							<td>
 								<input id="pass2" type="password" required="required" class="bsize3">
 							</td>
@@ -42,13 +51,19 @@
 				<div class="reg-form">
 					<table>
 						<tr>
-							<th>이름</th>
+							<th>
+								<span id="required">*</span>
+								<span>이름</span>
+							</th>
 							<td>
 								<input id="name" name="name" type="text" required="required" class="bsize2">
 							</td>
 						</tr>
 						<tr>
-							<th>닉네임</th>
+							<th>
+								<span id="required">*</span>
+								<span>닉네임</span>
+							</th>
 							<td>
 								<span class="form-info">공백없이 한글,영문,숫자만 입력 가능 (한글2자, 영문4자 이상)<br>
 								닉네임을 바꾸시면 앞으로 60일 이내에는 변경 할 수 없습니다.<br></span>
@@ -56,37 +71,56 @@
 							</td>
 						</tr>
 						<tr>
-							<th>E-mail</th>
+							<th>
+								<span id="required">*</span>
+								<span>E-mail</span>
+							</th>
 							<td>
 								<input id="email" name="email" type="text" required="required" class="bsize5">
 							</td>
 						</tr>
 						<tr>
-							<th>전화번호</th>
+							<th>
+								<span id="required">*</span>
+								<span>전화번호</span>
+							</th>
 							<td>
 								<input id="phone" name="phone" type="text" required="required" class="bsize3">
 							</td>
 						</tr>
 						<tr>
-							<th>주소</th>
+							<th>
+								<span id="required">*</span>
+								<span>주소</span>
+							</th>
 							<td colspan="3">
 								<button type="button" onclick="findAddr()">주소검색</button><br>
 								<input name="address1" id="address1" type="text" required="required" readonly="readonly" class="bsize4">
-								<label>기본주소</label><br>
+								<label>기본주소</label>
+								<span id="required">*</span>
+								<br>
 								<input name="address2" id="address2" type="text" class="bsize4">
 								<label>상세주소</label><br>
 							</td>
 						</tr>
 						<tr class="sys">
-							
-							<th colspan="4">*사용중인 시스템 기입 - 모르는 경우 "모름" 기입</th>
+							<th colspan="4">
+								<span id="required">*</span>
+								<span>사용중인 시스템 기입 - 모르는 경우 "모름" 기입</span>
+							</th>
 						</tr>
 						<tr>
-							<th>사용중인 VGA</th>
+							<th>
+								<span id="required">*</span>
+								<span>사용중인 VGA</span>
+							</th>
 							<td>
 								<input name="vga" type="text" required="required" class="bsize3">
 							</td>
-							<th>시리얼 넘버</th>
+							<th>
+								<span id="required">*</span>
+								<span>시리얼 넘버</span>
+							</th>
 							<td>
 								<input name="sn" type="text" required="required" class="bsize3">
 							</td>

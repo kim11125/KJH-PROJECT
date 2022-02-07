@@ -103,6 +103,10 @@
 	padding: 7px;
 }
 /* /////////////////////////// */
+#required{
+	color: #ff0000;
+}
+
 .reg-form{
 	margin-bottom: 40px;
 }

@@ -14,12 +14,23 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		<link rel="stylesheet" href="/css/side.css">
 		<link rel="stylesheet" href="/css/content.css">
 		<link rel="stylesheet" href="/css/faq.css">
+		
+		<!-- include summernote css/js -->
+		<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> 
+		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+		<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
+		<!-- 서머노트를 위해 추가해야할 부분 -->
+		<script src="/summernote/summernote-lite.js"></script>
+		<script src="/summernote/lang/summernote-ko-KR.js"></script>
+		<script src="/summernote/summernote-mySetting.js"></script>
+		<link rel="stylesheet" href="/summernote/summernote-lite.css">	
+		
 	</head>
 	<body>
 	<th:block th:insert="~{/layout/header :: header}" />
 	<section class="view-size flex between">
 		<th:block th:insert="~{/custom/aspolicy :: custom-side}" />
-		<div class="wrap" id="faq">
+		<div id="faq">
 			<div id="title">
 				<p>FAQ</p>
 			</div>
@@ -28,50 +39,45 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 					<a href="/faq/write">글쓰기</a>
 				</p>
 			</div>
-			<section class="wrap">
-				<div class="faq-title">
-					<ul class="flex wrap between">
-						<li>
-							<img alt="icon-search" src="/images/fsearch.gif">
-						</li>
-						<li class="tit">제목이들어갈자리애오</li>
-						<li>
-							<i class="fas fa-chevron-down"></i>
-						</li>
-					</ul>
-				</div>
-				<div class="faq-content">
-					content가ㅏ 들어갈자리에오
-				</div>
-				<div class="faq-title">
-					<ul class="flex wrap between">
-						<li>
-							<img alt="icon-search" src="/images/fsearch.gif">
-						</li>
-						<li class="tit">제목이들어갈자리애오</li>
-						<li>
-							<i class="fas fa-chevron-down"></i>
-						</li>					
-					</ul>
-				</div>
-				<div class="faq-content">
-					content가ㅏ 들어갈자리에오
-				</div>
-				<div class="faq-title">
-					<ul class="flex wrap between">
-						<li>
-							<img alt="icon-search" src="/images/fsearch.gif">
-						</li>
-						<li class="tit">제목이들어갈자리애오</li>
-						<li>
-							<i class="fas fa-chevron-down"></i>
-						</li>					
-					</ul>
-				</div>
-				<div class="faq-content">
-					content가ㅏ 들어갈자리에오
-				</div>
-			</section>
+			<th:block class="wrap" th:each="list : ${list}">
+				<section class="faq-list">
+					<div class="faq-title">
+						<ul class="flex wrap between">
+							<li>
+								<img alt="icon-search" src="/images/fsearch.gif">
+							</li>
+							<li class="tit">[[${list.subject}]]</li>
+							<li>
+								<i class="fas fa-chevron-down btn-down"></i>
+								<i class="fas fa-chevron-up btn-up"></i>
+							</li>
+						</ul>
+					</div>
+					<div class="faq-content">
+						<div class="btn-del">
+							<a sec:authorize="hasRole('ROLE_ADMIN')">삭제</a>
+						</div>
+						[(${list.content})]
+					</div>
+				</section>
+			</th:block>
+			<script type="text/javascript">
+			$(function(){
+				$(".btn-down").click(function(){
+					$(this).parents("#faq .faq-list").find(".faq-content").slideDown("fast");
+					$(this).parents("#faq .faq-list").find(".btn-down").hide();
+					$(this).parents("#faq .wrap").find(".btn-up").show();
+				});
+				
+				$(".btn-up").click(function(){
+					$(this).parents("#faq .faq-list").find(".faq-content").slideUp("fast");
+					$(this).parents("#faq .faq-list").find(".btn-down").show();
+					$(this).parents("#faq .faq-list").find(".btn-up").hide();
+				});
+				
+			});
+			
+			</script>
 		</div>
 	</section>
 	</body>

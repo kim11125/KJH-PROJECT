@@ -1,12 +1,12 @@
 package kjh.controller.mybatis;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import kjh.domain.dto.mybatis.FaqDto;
 import kjh.service.FaqService;
-import kjh.service.impl.FaqServiceImpl;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -17,8 +17,8 @@ public class FaqController {
 	
 	//faq리스트페이지
 	@GetMapping("/faq")
-	public String faqlist() {
-		return "/custom/faq/faqList";
+	public String faqlist(FaqDto dto, Model model) {
+		return service.faqlist(dto, model);
 	}
 	
 	//faq쓰기페이지

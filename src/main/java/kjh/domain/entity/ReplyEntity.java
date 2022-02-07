@@ -34,7 +34,6 @@ public class ReplyEntity extends BaseEntity{
 	@Column(nullable = false)
 	private String replyer;
 	
-	@Cascade(CascadeType.ALL)
 	@JoinColumn(name = "qno")
 	@ManyToOne // reply 여러개는 qna 1개에 담길수 있으므로 reply쪽에 many지정
 	private QnaEntity qna; //참조할 엔티티

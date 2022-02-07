@@ -29,17 +29,11 @@ public class VisualServiceImpl implements VisualService {
 
 		long fileSize = visualFile.getSize(); //파일 사이즈정보
 		String fileName = visualFile.getOriginalFilename(); //저장될 파일이름
-//		String filePath = "/images/visual/"; //저장될 파일경로
-//		ClassPathResource cpr = new ClassPathResource("static"+filePath); //파일 경로
-//		File location = cpr.getFile(); //파일객체 생성
-//		visualFile.transferTo(location, fileName)); //파일 보내기
-		
-		//리눅스 경로에 업로드하는 방법
 		String location = "/home/ec2-user/src/root";
 		String filePath = "/file/visual/"; //  root 경로 : /home/ec2-user/src/root
+		
 		visualFile.transferTo(new File(location+filePath, fileName)); //파일 보내기
 		
-		log.debug("파일 업로드완료");
 		
 		int size = repository.findAll().size();
 
@@ -49,8 +43,6 @@ public class VisualServiceImpl implements VisualService {
 				.build();
 
 		repository.save(entity);
-		
-		
 		
 	}
 	

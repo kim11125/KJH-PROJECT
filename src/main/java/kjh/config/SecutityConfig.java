@@ -23,9 +23,9 @@ public class SecutityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests() //인증관련 설정
 			////////////누구나 접근 가능한 페이지///////////////
-			.antMatchers("/","/loginpage", "/info/**", "/visuals/**").permitAll() //누구나 접근가능
-			.antMatchers("/custom/aspolicy/**", "/custom/board/**", "/qna/**").permitAll() //누구나 접근가능
-			.antMatchers("/visuals/**", "/goods/**", "/goodspage/**", "/goodsContent/**").permitAll() //누구나 접근가능
+			.antMatchers("/","/loginpage", "/info/**", "/visuals/**").permitAll()
+			.antMatchers("/custom/aspolicy/**", "/custom/board/**", "/qna/**").permitAll()
+			.antMatchers("/visuals/**", "/goods/**", "/goodspage/**", "/goodsContent/**").permitAll()
 			.antMatchers("/replies/**", "/faq", "/withdraw/**").permitAll()
 			////////아래는 권한이 필요함////////
 			//user 권한만 접근가능
@@ -44,7 +44,7 @@ public class SecutityConfig extends WebSecurityConfigurerAdapter{
 		http.formLogin()
 			.loginPage("/loginpage") //사용자 정의 로그인 페이지
 			.loginProcessingUrl("/login/proc")//로그인페이지의 action값
-			.usernameParameter("userId")//로그인 페이지 username -> id
+			.usernameParameter("userId")//로그인 페이지 username -> userId
 			//.defaultSuccessUrl("/") //로그인 성공후 이쪽으로 보냄
 			.passwordParameter("pw")//패스워드값은 pw
 			;

@@ -11,7 +11,7 @@
 /* /////////////////////////////// */
 #faq .faq-title .tit{
 	font-size: 17px;
-	color: #333;
+	color: #666;
 	font-weight: 700;
 	width: 780px;
 }
@@ -23,6 +23,7 @@
 #faq .faq-title ul li:first-child{
 	position: relative;
 }
+
 
 #faq .faq-title ul li img{
 	position: absolute;
@@ -36,6 +37,10 @@
 	padding: 1px 5px;
 }
 
+#faq .faq-title ul li i:last-child{
+	display: none;
+}
+
 #faq .faq-title .wrap{
 	height: 30px;
 	line-height: 30px;
@@ -44,13 +49,26 @@
 
 /* /////////////////////////////// */
 #faq .faq-content{
+	display: none;
+}
+
+#faq .faq-content .btn-del{
+	text-align: right;
+}
+
+#faq .faq-content .btn-del a{
+	font-size: 14px;
+	padding: 5px;
+}
+
+#faq .faq-content{
 	border-top: 1px solid #a9a9a9;
 	padding: 10px 20px;
 	background-color: #f8f8f8;
 }
 
-#faq .faq-content:last-child {
-	border-bottom: 1px solid #a9a9a9;
+#faq .faq-content p{
+	font-size: 15px;
 }
 /* /////////////////////////////// */
 

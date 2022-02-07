@@ -10,6 +10,7 @@ li{list-style: none;}
 a{text-decoration: none; cursor: pointer;color: #000;}
 table{border-spacing: 0; border-collapse: collapse;}
 pre{white-space: pre-wrap;}
+button{cursor: pointer;}
 
 .flex{display: flex}
 .column{flex-direction: column;}

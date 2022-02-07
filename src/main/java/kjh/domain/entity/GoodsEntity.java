@@ -40,7 +40,7 @@ public class GoodsEntity extends BaseEntity{
 	//할인여부는 선택사항
 	private long discount;
 	
-	//상품이미지 띄우기
+	//상품이미지
 	@Column(nullable = false)
 	private String filePath;
 	@Column(nullable = false)

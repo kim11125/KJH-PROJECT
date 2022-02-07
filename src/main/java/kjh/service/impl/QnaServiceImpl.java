@@ -73,8 +73,6 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public String qnawrite(QnaSaveDto dto, Principal principal) {
 	
-		//MyUserDetails ud=(MyUserDetails)(Authentication)principal;
-		
 		QnaEntity entity = QnaEntity.builder()
 				.category(dto.getCategory())
 				.subject(dto.getSubject())

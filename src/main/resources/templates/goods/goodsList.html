@@ -42,29 +42,20 @@
 				</section>
 			</div>
 			<script type="text/javascript">
+				$(function(){
+					goodslist();
+				});
 
-					$(function(){
-						goodslist();
-						countup();
+				function goodslist(){
+					$.ajax({
+						url: "/goodspage", //goodspage로 매핑된 데이터를
+						success: function(result){
+							$("#goodsPage>.wrap").html(result);
+							//여기에 html을 뿌림
+						}
 					});
-
-					function goodslist(){
-						$.ajax({
-							url: "/goodspage", //goodspage로 매핑된 데이터를
-							success: function(result){
-								$("#goodsPage>.wrap").html(result);
-								//여기에 html을 뿌림
-							}
-						});
-					};
-					
-					function countup(){
-						var cnum = $(this).siblings(".cnum").val();
-						alert(cnum);
-					};
-
-					</script>
-			
+				};
+			</script>
 		</section>
 	</body>
 	<th:block th:insert="~{/layout/footer :: footer}" />

@@ -96,7 +96,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			
 			$(".btn-del").click(function(){
 				
-				alert("삭제되었습니다.");
 				/*
 				if( confirm("정말 삭제하시겠습니까?") ){
 					return true; //삭제 확인 버튼시 ajax처리
@@ -120,6 +119,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 					url: "/replies/"+rno,
 					type: "delete",
 					success: function(){
+						alert("삭제되었습니다.");
 						loadReply();
 					}
 				});

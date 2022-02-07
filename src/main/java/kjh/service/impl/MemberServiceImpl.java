@@ -55,8 +55,14 @@ public class MemberServiceImpl implements MemberService {
 		dto.setPw(passwordEncoder.encode(dto.getPw()));
 		
 		entity = dto.toEntity();
-		
-		entity.addRole(MemberRole.USER); //기본으로 유저롤 부여
+		if( dto.getEmail().contains("@admin.com") ) {
+			//이메일이 @admin.com으로 끝나는 경우 관리자권한, 유저권한 동시 부여
+			entity.addRole(MemberRole.USER);
+			entity.addRole(MemberRole.ADMIN);
+		}else {
+			//그외는 유저롤 부여
+			entity.addRole(MemberRole.USER);
+		}
 		
 		repository.save(entity);
 		return "/member/login";
