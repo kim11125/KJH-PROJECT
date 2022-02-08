@@ -156,12 +156,15 @@ class KjhProjectApplicationTests {
 			});
 	}
 	
-	//@Test
-	void qna입력(Principal principal) {
-		QnaEntity entity = QnaEntity.builder()
-				.category("회원정보").subject("테스트제목").content("테스트내용")
-				.build();
-		qnaRepository.save(entity);
+	@Test
+	void qna입력() {
+		IntStream.rangeClosed(1, 100).forEach(i->{
+			QnaEntity entity = QnaEntity.builder()
+					.category("회원정보").subject("테스트제목"+i).content("테스트내용"+i)
+					.build();
+			
+			qnaRepository.save(entity);
+		});
 	}
 	
 	

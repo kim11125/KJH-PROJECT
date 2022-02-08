@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+#faq>.wrap{
+	max-width: 905px;
+}
+
 #faq #faq-write{
 	margin-bottom: 10px;
 }
@@ -47,6 +51,15 @@
 	padding: 0 15px;
 }
 
+#faq .faq-title .arrow span{
+	font-size: 20px;
+	cursor: pointer;
+	padding: 2px 5px;
+}
+
+#faq .btn-up{
+	display: none;
+}
 /* /////////////////////////////// */
 #faq .faq-content{
 	display: none;
@@ -71,5 +84,7 @@
 	font-size: 15px;
 }
 /* /////////////////////////////// */
-
+.updateform{
+	display: none;
+}
 

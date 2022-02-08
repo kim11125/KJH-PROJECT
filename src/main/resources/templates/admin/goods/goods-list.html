@@ -23,15 +23,20 @@
 							<span>수량</span>
 							<div class="wrap">
 								<input class="cnum" type="text" value="1">
-								<button class="countup" type="button" onclick="countup()">+</button>
-								<button class="countdown" type="button" onclick="countdown()">-</button>
+								<button class="countup" type="button">+</button>
+								<button class="countdown" type="button">-</button>
 							</div>
 						</li>
 					</ul>
 					<div class="flex end btn-cart">
 						<button id="btn-cart" type="submit" onsubmit="cart()">장바구니 담기</button>
 					</div>
-					
+					<script type="text/javascript">
+						$(".countup").click(function(){
+							var a = $(this).parents("#goodspage .wrap").find(".cnum").val();
+							console.log(a);
+						});
+					</script>
 				</div>
 			</div>
 		</div>

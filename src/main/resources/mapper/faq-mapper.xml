@@ -10,14 +10,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{subject}, #{content}, sysdate(), sysdate())
 	</insert>
 	
-	<!-- 모든faq보기 -->
+	<!-- faq보기 -->
 	<select id="findAll" resultType="kjh.domain.dto.mybatis.FaqDto">
 		select * from faq order by fno desc
 	</select>
 	
+	<!-- 삭제처리 -->
 	<delete id="deleteById">
-		delete * from faq
-		where fno=#{fno}
+		delete from faq where fno=#{fno}
 	</delete>
 	
 	

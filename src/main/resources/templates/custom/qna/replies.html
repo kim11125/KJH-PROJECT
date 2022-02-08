@@ -96,33 +96,32 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			
 			$(".btn-del").click(function(){
 				
-				/*
-				if( confirm("정말 삭제하시겠습니까?") ){
-					return true; //삭제 확인 버튼시 ajax처리
-				}else{
-					return false; //삭제 취소 버튼시 return false로 함수취소
-				}
-				*/
-				
 				var rno = $(this).siblings(".rno").val();
 				//console.log(rno);
 				//alert(rno);
 				
-				 $.ajax({
-					 //403 forbiden error 발생시 ajax처리 전에 beforeSend로 csrf값 보내줌
-					 beforeSend: function (jqXHR, settings) {
-			           var header = $("meta[name='_csrf_header']").attr("content");
-			           var token = $("meta[name='_csrf']").attr("content");
-			           jqXHR.setRequestHeader(header, token);
-					},
+				if( confirm("정말 삭제하시겠습니까?") ){
 					
-					url: "/replies/"+rno,
-					type: "delete",
-					success: function(){
-						alert("삭제되었습니다.");
-						loadReply();
-					}
-				});
+					 $.ajax({
+						 //403 forbiden error 발생시 ajax처리 전에 beforeSend로 csrf값 보내줌
+						 beforeSend: function (jqXHR, settings) {
+				           var header = $("meta[name='_csrf_header']").attr("content");
+				           var token = $("meta[name='_csrf']").attr("content");
+				           jqXHR.setRequestHeader(header, token);
+						},
+						
+						url: "/replies/"+rno,
+						type: "delete",
+						success: function(){
+							alert("삭제되었습니다.");
+							loadReply();
+						}
+					});
+				
+				}else{
+					return false; //삭제 취소 버튼시 return false로 함수취소
+				}
+				
 				
 			});
 			

@@ -3,6 +3,7 @@ package kjh.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,20 +24,36 @@ public class SecutityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests() //인증관련 설정
 			////////////누구나 접근 가능한 페이지///////////////
-			.antMatchers("/","/loginpage", "/info/**", "/visuals/**").permitAll()
-			.antMatchers("/custom/aspolicy/**", "/custom/board/**", "/qna/**").permitAll()
-			.antMatchers("/visuals/**", "/goods/**", "/goodspage/**", "/goodsContent/**").permitAll()
-			.antMatchers("/replies/**", "/faq", "/withdraw/**").permitAll()
+			.antMatchers("/", "/qna/**", "/replies/**").permitAll()
+			.antMatchers(HttpMethod.GET).permitAll()
 			////////아래는 권한이 필요함////////
 			//user 권한만 접근가능
 			.antMatchers("/member/**", "/user/**").hasRole("USER")
 			//admin 권한만 접근가능
-			.antMatchers("/admin/**", "/custom/boards/**", "/faq/**").hasRole("ADMIN")
+			.antMatchers("/admin", "/custom/**", "/faq/**").hasRole("ADMIN")
+			.antMatchers(HttpMethod.GET, "/admin").hasRole("ADMIN")
 			//로그인 안한경우에만 접근가능
 			.antMatchers("/loginpage", "/join/**", "/register").anonymous()
 			//나머지는 인증필수
 			.anyRequest().authenticated()
 			;
+		/*
+		////////////누구나 접근 가능한 페이지///////////////
+		.antMatchers(HttpMethod.GET, "/","/loginpage", "/info/**", "/visuals/**").permitAll()
+		.antMatchers("/custom/aspolicy/**", "/custom/board/**", "/qna/**").permitAll()
+		.antMatchers("/visuals/**", "/goods/**", "/goodspage/**", "/goodsContent/**").permitAll()
+		.antMatchers("/replies/**", "/faq", "/withdraw/**").permitAll()
+		////////아래는 권한이 필요함////////
+		//user 권한만 접근가능
+		.antMatchers("/member/**", "/user/**").hasRole("USER")
+		//admin 권한만 접근가능
+		.antMatchers("/admin/**", "/custom/boards/**", "/faq/**").hasRole("ADMIN")
+		//로그인 안한경우에만 접근가능
+		.antMatchers("/loginpage", "/join/**", "/register").anonymous()
+		//나머지는 인증필수
+		.anyRequest().authenticated()
+		;
+		*/
 		
 		//소셜로그인
 		//http.oauth2Login().userInfoEndpoint().userService(customOAuth2UserService);
