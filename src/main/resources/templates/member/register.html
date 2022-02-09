@@ -32,6 +32,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 								<span class="form-info">영문자, 숫자, _ 만 입력 가능. 최소 6자이상 입력하세요.<br></span>
 								<input id="id" name="userId" type="text" required="required" class="bsize3">
 								<div class="check" id="id_chk"></div>
+								<div class="check" id="id_dbchk"></div>
 							</td>
 						</tr>
 						<tr>
@@ -65,8 +66,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 								<span>이름</span>
 							</th>
 							<td>
+								<p>2자이상 10자이하</p>
 								<input id="name" name="name" type="text" required="required" class="bsize2">
-								<div id="name_chk"></div>
+								<span id="name_chk"></span>
 							</td>
 						</tr>
 						<tr>
@@ -78,7 +80,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 								<span class="form-info">공백없이 한글, 영문, 숫자, 특수문자 입력 가능 (3자이상 15자 이하)<br>
 								닉네임을 바꾸시면 앞으로 60일 이내에는 변경 할 수 없습니다.<br></span>
 								<input id="nick" name="nick" type="text" required="required" class="bsize2">
-								<div id="nick_chk"></div>
+								<span id="nick_chk"></span>
 							</td>
 						</tr>
 						<tr>
@@ -172,20 +174,41 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 	
 		//id 패턴 확인
 		$("#id").focusout(function(){
-			var id = $("#id").val().trim();
+			var userId = $("#id").val().trim();
 			var idpattern = /^[a-zA-Z0-9_-]{6,}$/;
 			
-			if(id.length < 6){
+			
+			
+			
+			if(userId.length < 6){
 				$("#id_chk").html("*아이디는 최소 6자이상 입력하세요.").css("color", "red");
 				$("#id").focus();
 				return false;
-			}else if(!idpattern.test(id)){
+			}else if(!idpattern.test(userId)){
 				$("#id_chk").html("*영문자, 숫자, _ 만 입력 가능합니다.").css("color", "red");
 				$("#id").focus();
 				return false;
 			}else{
-				$("#id_chk").html("*사용가능한 아이디입니다.").css("color", "#008000");
+				$.ajax({
+					beforeSend: function (jqXHR, settings) {
+			           var header = $("meta[name='_csrf_header']").attr("content");
+			           var token = $("meta[name='_csrf']").attr("content");
+			           jqXHR.setRequestHeader(header, token);
+					},
+					
+					url:"/idchk",
+					type:"post",
+					data:{
+						userId : userId
+					},
+					success:function(result){
+						$("#id_dbchk").html(result);
+						//console.log(result);
+					}
+				});
 			}
+			return true;
+				
 		})
 		
 		
@@ -233,14 +256,18 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 		//이름 패턴 확인
 		$("#name").focusout(function(){
 			var name = $("#name").val().trim();
-			var namepattern = /^[가-힣a-zA-Z]+$/;
+			var namepattern = /^[가-힣a-zA-Z]{2,10}$/;
 			
-			if(!namepattern.test(name)){
+			if(name.length < 2 || name.length > 10){
+				$("#name_chk").html("*이름은 2자이상 10자이하로 작성해주세요").css("color", "red");
+				$("#name").focus();
+				return false;
+			}else if(!namepattern.test(name)){
 				$("#name_chk").html("*이름은 한글 또는 영문만 가능합니다.").css("color", "red");
 				$("#name").focus();
 				return false;
 			}else{
-				$("#name_chk").html("*확인완료").css("color", "#008000");
+				$("#name_chk").html("").css("color", "#fff");
 			}
 		})
 		

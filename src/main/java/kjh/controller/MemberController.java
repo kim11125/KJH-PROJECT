@@ -44,6 +44,13 @@ public class MemberController {
 	public String registerForm() {
 		return "/member/register";
 	}
+
+	//아이디 중복체크
+	@ResponseBody
+	@PostMapping("/idchk")
+	public String idchk(String userId) {
+		return service.idchk(userId);
+	}
 	
 	//회원가입처리
 	@PostMapping("/register")

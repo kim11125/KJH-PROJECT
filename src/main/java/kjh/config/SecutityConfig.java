@@ -24,27 +24,28 @@ public class SecutityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests() //인증관련 설정
 			////////////누구나 접근 가능한 페이지///////////////
-			.antMatchers("/", "/qna/**", "/replies/**").permitAll()
-			.antMatchers(HttpMethod.GET).permitAll()
+			//index 페이지 관련
+			.antMatchers("/","/loginpage", "/info/**", "/visuals/**").permitAll()
+			//게시판 관련
+			.antMatchers("/custom/board/**", "/qna/**", "/faq", "/replies/**").permitAll()
+			//상품페이지 관련
+			.antMatchers("/goods/**", "/goodspage/**", "/goodsContent/**").permitAll()
 			////////아래는 권한이 필요함////////
 			//user 권한만 접근가능
-			.antMatchers("/member/**", "/user/**").hasRole("USER")
+			.antMatchers("/member/**", "/user/**", "/withdraw/**").hasRole("USER")
 			//admin 권한만 접근가능
-			.antMatchers("/admin/**", "/custom/**", "/faq/**").hasRole("ADMIN")
+			.antMatchers("/admin/**", "/custom/boards/write", "/faq/**").hasRole("ADMIN")
 			//로그인 안한경우에만 접근가능
 			.antMatchers("/loginpage", "/join/**", "/register").anonymous()
 			//나머지는 인증필수
 			.anyRequest().authenticated()
 			;
+		
 		/*
 		////////////누구나 접근 가능한 페이지///////////////
-		.antMatchers(HttpMethod.GET, "/","/loginpage", "/info/**", "/visuals/**").permitAll()
-		.antMatchers("/custom/aspolicy/**", "/custom/board/**", "/qna/**").permitAll()
-		.antMatchers("/visuals/**", "/goods/**", "/goodspage/**", "/goodsContent/**").permitAll()
-		.antMatchers("/replies/**", "/faq", "/withdraw/**").permitAll()
-		
+		.antMatchers("/", "/qna/**", "/replies/**", "/idchk").permitAll()
+			.antMatchers(HttpMethod.GET).permitAll()
 		*/
-		
 		//소셜로그인
 		//http.oauth2Login().userInfoEndpoint().userService(customOAuth2UserService);
 		

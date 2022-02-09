@@ -33,7 +33,6 @@
 								<li class="sub-title">[[${detail.subTitle}]]</li>
 								<li class="price">
 									<del th:if="${detail.discount}">[[${detail.price}]]원</del>
-									<span th:if="${detail.discount}">&nbsp;></span>
 									<span>&nbsp;[[${detail.price - ((detail.price / 100) * detail.discount ) }]]원</span>
 									<span th:if="${detail.discount}">&nbsp;([[${detail.discount}]]% 할인)</span>
 								</li>
@@ -79,7 +78,7 @@
 				</section>
 				<section id="goods-qna">
 					<div class="wrap">
-						Q&A넣을거임
+						Q&amp;A넣을거임
 					</div>
 				</section>
 				<section id="goods-seller">

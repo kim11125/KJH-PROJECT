@@ -18,4 +18,6 @@ public interface MemberService {
 
 	void withdraw(long mno);
 
+	String idchk(String userId);
+
 }

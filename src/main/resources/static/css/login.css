@@ -5,6 +5,7 @@
 	padding: 70px 0;
 	margin: 0 auto;
 }
+
 #login-table>p{
 	font-size: 30px;
 	color: #666666;
@@ -16,6 +17,7 @@
 #log-form form p{
 	text-align: center;
 }
+
 #log-form form input,
 #log-form form button{
 	width: 320px;
@@ -26,28 +28,39 @@
     border: 1px solid #a9a9a9;
     border-radius: 5px;
 }
+
 #log-form .wrap{
 	width: 320px;
 	margin: 6px auto;
     text-align: right;
 }
+
 #log-form .wrap a:first-child{
 	border-right: 1px solid #a9a9a9;
 	padding-right: 4px;
 }
+
 #log-form .wrap a:last-child{
 	padding-left: 1px;
 }
+
 #log-form form button{
 	margin-top: 30px;
     background-color: #d7d7d7;
     font-size: 20px;
     cursor: pointer;
 }
+#log-form .loginerror{
+	margin-top: 10px;
+	font-size: 13px;
+	color: #ff0000;
+	font-weight: 700;
+}
 /* //////////////////// */
 #social-login{
 	text-align: center;
 }
+
 #social-login img{
 	width: 320px;
 	height: 50px;

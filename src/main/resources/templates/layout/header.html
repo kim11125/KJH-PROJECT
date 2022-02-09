@@ -14,6 +14,10 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 						<!-- sns아이콘 -->
 						<ul class="icons flex between">
 							<li>
+								<span id="temp"></span>
+								<img id="w_icon">
+							</li>
+							<li>
 								<a href="http://www.naver.com" target="_blank">
 									<img alt="facebook" src="/images/face.gif">
 								</a>
@@ -35,6 +39,31 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 							</li>
 						</ul>
 					</div>
+					<script type="text/javascript">
+					$(function(){
+						var apiURI = "https://api.openweathermap.org/data/2.5/weather?q=seoul&appid=dd6069283e7f6064eeb3e828a7a3a73a";
+						
+						$.ajax({
+							url: apiURI,
+							dataType: "json",
+							async: "false",
+							success: function(result){
+								//console.log("lon = " + result.coord.lon);
+								//console.log("lat = " + result.coord.lat);
+								temp = parseInt( result.main.temp-273.15) + "℃"
+								console.log("현재온도 = " + ( parseInt( result.main.temp-273.15) ) );
+								//console.log(result);
+								
+								var imgURL = "http://openweathermap.org/img/w/" + result.weather[0].icon + ".png";
+								//console.log(imgURL);
+								$("#w_icon").attr("src", imgURL);
+								$("#temp").text(temp);
+								
+							}
+						});
+					});
+					
+					</script>
 					<div id="login">
 						<h1>로그인</h1>
 						<ul class="flex end">
