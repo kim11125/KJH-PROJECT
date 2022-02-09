@@ -22,7 +22,7 @@ public interface QnaService {
 	String qnaDelete(long qno);
 
 ////////////////////////////댓글////////////////////////////////////////
-	String getReplies(long qno, int page, Model model);
+	String getReplies(long qno, Model model);
 
 	void replySave(long qno, ReplySaveDto dto);
 

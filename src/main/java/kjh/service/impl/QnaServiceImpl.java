@@ -119,19 +119,19 @@ public class QnaServiceImpl implements QnaService {
 	
 	
 	@Override
-	public String getReplies(long qno, int page, Model model) {
-		Sort sort = Sort.by(Direction.DESC, "rno");
+	public String getReplies(long qno, Model model) {
+//		Sort sort = Sort.by(Direction.DESC, "rno");
 		
 		
 		//한페이지에 표현할 댓글 수
-		Pageable pageable = PageRequest.of(page - 1 , 5, sort);
-
-		Page<ReplyEntity> reply = replyRepository.findAll(pageable);
+//		Pageable pageable = PageRequest.of(page - 1 , 5, sort);
+//
+//		Page<ReplyEntity> reply = replyRepository.findAll(pageable);
+//		
+//		//한 화면에 표현할 댓글페이지 갯수, 시작페이지, 총페이지
+//		model.addAttribute("rpage", new PageDto(5, page, reply.getTotalPages()));
 		
-		//한 화면에 표현할 댓글페이지 갯수, 시작페이지, 총페이지
-		model.addAttribute("rpage", new PageDto(5, page, reply.getTotalPages()));
-		
-		List<ReplyListDto> result = replyRepository.findAllByQna_qno(qno, pageable).stream()
+		List<ReplyListDto> result = replyRepository.findAllByQna_qno(qno).stream()
 										.map(ReplyListDto::new)
 										.collect(Collectors.toList());
 		model.addAttribute("reply", result); 

@@ -68,8 +68,8 @@ public class QnaController {
 	
 	//댓글 읽어오기
 	@GetMapping("/qna/{qno}/replies")
-	public String getReplies(@PathVariable long qno,@RequestParam(defaultValue = "1") int page , Model model) {
-		return service.getReplies(qno, page, model);
+	public String getReplies(@PathVariable long qno, Model model) {
+		return service.getReplies(qno, model);
 	}
 	
 	//댓글 저장처리

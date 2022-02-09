@@ -35,7 +35,6 @@ public class MyUserDetails extends User implements OAuth2User {
 								.collect(Collectors.toSet()));
 		//role은 Set 컬렉션의 구성으로 GrantedAuthority 타입을 요구함
 		//Set<MemberRole> -> Set<SimpleGrantedAuthority>
-		
 		//GrantedAuthority <- SimpleGrantedAuthority
 		
 		name=entity.getName();

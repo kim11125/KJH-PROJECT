@@ -99,13 +99,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 						
 						function saveReply(){
 							
-							var replyer_val = $("#replyer").val();
+							var replyer_val = $.trim( $("#replyer").val() );
 							var reply_val = $.trim( $("#replyData").val() );
 							//qno = "[[${detail.qno}]]";
 							//console.log(reply_val);
 							//console.log(replyer_val);
 							
-							if(reply_val == "" || replyer_val == ""){ //댓글란에 공백만 입력되는거 막기
+							if(reply_val == "" || replyer_val == ""){ //작성자/댓글란에 공백만 입력되는거 막기
 								alert("작성자 이름 또는 댓글이 입력되지않았습니다.");
 								return;
 							}

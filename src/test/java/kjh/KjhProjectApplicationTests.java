@@ -64,11 +64,11 @@ class KjhProjectApplicationTests {
 		memRepository.save(entity);
 	}
 	
-	//@Test
+	@Test
 	void 유저한명가입() {
 		MemberEntity entity = MemberEntity.builder()
-				.userId("444")
-				.pw(passwordEncoder.encode("444"))
+				.userId("222")
+				.pw(passwordEncoder.encode("222"))
 				.name("유저")
 				.nick("회원")
 				.email("user@user.com")
@@ -156,7 +156,7 @@ class KjhProjectApplicationTests {
 			});
 	}
 	
-	@Test
+	//@Test
 	void qna입력() {
 		IntStream.rangeClosed(1, 100).forEach(i->{
 			QnaEntity entity = QnaEntity.builder()

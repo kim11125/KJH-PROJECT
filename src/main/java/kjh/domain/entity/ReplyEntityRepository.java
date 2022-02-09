@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReplyEntityRepository extends JpaRepository<ReplyEntity, Long>{
 
-	List<ReplyEntity> findAllByQna_qno(long qno, Pageable pageable);
+	List<ReplyEntity> findAllByQna_qno(long qno);
 
 }
