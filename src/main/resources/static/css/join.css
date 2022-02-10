@@ -138,6 +138,16 @@
 	margin-top: 5px;
 }
 
+.reg-form .check{
+	color: red;
+	margin-top: 3px;
+}
+
+.reg-form #id_dbchk{
+	color: red;
+	margin-top:3px; 
+}
+
 .form-info{
 	padding-bottom: 5px; 
 }

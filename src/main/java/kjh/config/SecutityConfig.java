@@ -25,7 +25,7 @@ public class SecutityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests() //인증관련 설정
 			////////////누구나 접근 가능한 페이지///////////////
 			//index 페이지 관련
-			.antMatchers("/","/loginpage", "/info/**", "/visuals/**").permitAll()
+			.antMatchers("/","/loginpage", "/info/**", "/visuals/**", "/idchk").permitAll()
 			//게시판 관련
 			.antMatchers("/custom/board/**", "/qna/**", "/faq", "/replies/**").permitAll()
 			//상품페이지 관련

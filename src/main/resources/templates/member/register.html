@@ -43,7 +43,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 							<td>
 								<p>숫자, 문자, 특수문자를 조합하여 8자~16자로 구성해주세요.</p>
 								<input class="pw bsize3" id="pass1" name="pw" type="password" required="required">
-								<div id="pw_chk"></div>
+								<div class="check"  id="pw_chk"></div>
 							</td>
 						</tr>
 						<tr>
@@ -53,7 +53,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 							</th>
 							<td>
 								<input class="pw bsize3" id="pass2" type="password" required="required">
-								<span id="eq_pw"></span>
+								<span class="check"  id="eq_pw"></span>
 							</td>
 						</tr>
 					</table>
@@ -68,7 +68,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 							<td>
 								<p>2자이상 10자이하</p>
 								<input id="name" name="name" type="text" required="required" class="bsize2">
-								<span id="name_chk"></span>
+								<span class="check"  id="name_chk"></span>
 							</td>
 						</tr>
 						<tr>
@@ -80,7 +80,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 								<span class="form-info">공백없이 한글, 영문, 숫자, 특수문자 입력 가능 (3자이상 15자 이하)<br>
 								닉네임을 바꾸시면 앞으로 60일 이내에는 변경 할 수 없습니다.<br></span>
 								<input id="nick" name="nick" type="text" required="required" class="bsize2">
-								<span id="nick_chk"></span>
+								<span class="check"  id="nick_chk"></span>
 							</td>
 						</tr>
 						<tr>
@@ -90,7 +90,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 							</th>
 							<td>
 								<input id="email" name="email" type="text" required="required" class="bsize5">
-								<div id="email_chk"></div>
+								<div class="check"  id="email_chk"></div>
 							</td>
 						</tr>
 						<tr>
@@ -101,7 +101,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 							<td>
 								<span>하이픈(-)을 제외한 숫자만 입력해주세요.</span><br>
 								<input id="phone" name="phone" type="text" required="required" class="bsize3">
-								<div id="phone_chk"></div>
+								<div class="check"  id="phone_chk"></div>
 							</td>
 						</tr>
 						<tr>
@@ -189,27 +189,34 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 				$("#id").focus();
 				return false;
 			}else{
-				$.ajax({
-					beforeSend: function (jqXHR, settings) {
-			           var header = $("meta[name='_csrf_header']").attr("content");
-			           var token = $("meta[name='_csrf']").attr("content");
-			           jqXHR.setRequestHeader(header, token);
-					},
-					
-					url:"/idchk",
-					type:"post",
-					data:{
-						userId : userId
-					},
-					success:function(result){
-						$("#id_dbchk").html(result);
-						//console.log(result);
-					}
-				});
+				$("#id_chk").html("").css("color", "#fff");
+				return true;
 			}
-			return true;
 				
 		})
+		
+		$("#id").focusout(function(){
+			var userId = $("#id").val().trim();
+			
+			$.ajax({
+				beforeSend: function (jqXHR, settings) {
+		           var header = $("meta[name='_csrf_header']").attr("content");
+		           var token = $("meta[name='_csrf']").attr("content");
+		           jqXHR.setRequestHeader(header, token);
+				},
+				
+				url:"/idchk",
+				type:"post",
+				data:{
+					userId : userId
+				},
+				success:function(result){
+					$("#id_dbchk").html(result);
+					//console.log(result);
+				}
+			});
+			
+		});
 		
 		
 		//비밀번호 패턴 확인

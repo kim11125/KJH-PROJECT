@@ -43,4 +43,4 @@ public class ReplyEntity extends BaseEntity{
 			replyer = dto.getReplyer();
 			return this;
 	}
-}
+}	
