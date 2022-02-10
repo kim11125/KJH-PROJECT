@@ -42,7 +42,7 @@ public class MemberEntity extends BaseEntity{
 	private String name;
 	@Column(nullable = false)
 	private String nick;
-	@Column(nullable = false,unique = true)
+	@Column(nullable = false)
 	private String email;
 	@Column(nullable = false)
 	private String phone;
