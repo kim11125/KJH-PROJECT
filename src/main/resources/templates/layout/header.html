@@ -11,33 +11,38 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 				<section class="social flex end">
 					<div class="wrap">
 						<h1>sns</h1>
+						<div class="flex">
+							<ul class="weather">
+								<li class="flex">
+									<span>현재날씨</span>
+									<span id="temp"></span>
+									<img id="w_icon">
+								</li>
+							</ul>
 						<!-- sns아이콘 -->
-						<ul class="icons flex between">
-							<li>
-								<span id="temp"></span>
-								<img id="w_icon">
-							</li>
-							<li>
-								<a href="http://www.naver.com" target="_blank">
-									<img alt="facebook" src="/images/face.gif">
-								</a>
-							</li>
-							<li>
-								<a href="#" target="_blank">
-									<img alt="danawa" src="/images/danawa.gif">
-								</a>
-							</li>
-							<li>
-								<a href="#" target="_blank">
-									<img alt="kakao" src="/images/kakao.png">
-								</a>
-							</li>
-							<li>
-								<a href="https://www.youtube.com/watch?v=Dhy20HC8bM4&list=PLu5cXg30tjURoULIY32g38TvgNIcldgvN" target="_blank">
-									<img alt="youtube" src="/images/youtube.png">
-								</a>
-							</li>
-						</ul>
+							<ul class="icons flex between">
+								<li>
+									<a href="http://www.naver.com" target="_blank">
+										<img alt="facebook" src="/images/face.gif">
+									</a>
+								</li>
+								<li>
+									<a href="#" target="_blank">
+										<img alt="danawa" src="/images/danawa.gif">
+									</a>
+								</li>
+								<li>
+									<a href="#" target="_blank">
+										<img alt="kakao" src="/images/kakao.png">
+									</a>
+								</li>
+								<li>
+									<a href="https://www.youtube.com/watch?v=Dhy20HC8bM4&list=PLu5cXg30tjURoULIY32g38TvgNIcldgvN" target="_blank">
+										<img alt="youtube" src="/images/youtube.png">
+									</a>
+								</li>
+							</ul>
+						</div>
 					</div>
 					<script type="text/javascript">
 					$(function(){
@@ -92,21 +97,20 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 				<section id="top-menu" class="flex between">
 					<div id="logo">
 						<h1>로고</h1>
-						<!-- 로고넣을거임 -->
+						<!-- 로고들어갈자리 -->
 						<a href="/">GALAX</a>
 					</div>
-					<!-- <script type="text/javascript">
-						$(function(){
-							$("#top-menu>.nb>ul li").find("#sub-menu").stop().slideUp();
-							
-							$("#top-menu>.nb>ul li").hover(function(){
-								$(this).find("#sub-menu").stop().fadeIn(300);
-							},function(){
-								$(this).find("#sub-menu").stop().fadeOut(300);
-							});
-						});
-					</script> -->
 					<div th:replace="~{/layout/menu}"></div>
+					<script type="text/javascript">
+					$(function(){
+						
+						$(".nb>ul .wrap").hover(function(){
+							$(this).parent().find("#sub-menu").fadeIn(300);
+						},function(){
+							$(this).parent().find("#sub-menu").fadeOut(300);
+						});
+					});
+					</script>
 					<div id="search">
 						<a href="/"><img src="/images/search.gif"></a>
 						<input type="text">

@@ -28,6 +28,7 @@ public class SecutityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/","/loginpage", "/info/**", "/visuals/**", "/idchk").permitAll()
 			//게시판 관련
 			.antMatchers("/custom/board/**", "/qna/**", "/faq", "/replies/**").permitAll()
+			.antMatchers("/aspolicy").permitAll()
 			//상품페이지 관련
 			.antMatchers("/goods/**", "/goodspage/**", "/goodsContent/**").permitAll()
 			////////아래는 권한이 필요함////////

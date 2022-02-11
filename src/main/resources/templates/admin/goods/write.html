@@ -6,9 +6,9 @@
 			<div class="wrap admin view-size">
 				<p class="page-tit">상품 등록</p>
 				<form action="/goods/write" method="post" enctype="multipart/form-data">
-					<table>
+					<table id="goodswrite">
 						<tr>
-							<th>카테고리</th>
+							<th class="title">카테고리</th>
 							<td>
 								<select name="category">
 									<option value="" selected="selected" disabled="disabled">선택</option>
@@ -20,15 +20,15 @@
 							</td>
 						</tr>
 						<tr id="selDis">
-							<th>할인적용</th>
+							<th class="title">할인적용</th>
 							<td>
 								<label>
 									<span>적용</span>
-									<input type="radio" name="sel-dis" id="diso" checked="checked">
+									<input type="radio" name="sel-dis" id="diso">
 								</label>
 								<label>
 									<span>적용안함</span>
-									<input type="radio" name="sel-dis" id="disx">
+									<input type="radio" name="sel-dis" id="disx" checked="checked">
 								</label>
 							</td>
 						</tr>
@@ -39,50 +39,88 @@
 							</td>
 						</tr>
 						<tr>
-							<th>상품명</th>
+							<th class="title">상품명</th>
 							<td>
 								<input type="text" name="title" placeholder="상품명">
 							</td>
 						</tr>
 						<tr>
-							<th>가격</th>
+							<th class="title">가격</th>
 							<td>
-								<input type="text" name="price" placeholder="가격">
+								<input id="price" type="text" name="price" placeholder="가격">
+								<span id="price_chk"></span>
 							</td>
 						</tr>
 						<tr>
-							<th>갯수</th>
+							<th class="title">갯수</th>
 							<td>
-								<input type="text" name="stock" placeholder="갯수">
+								<input id="stock" type="text" name="stock" placeholder="갯수">
+								<span id="stock_chk"></span>
 							</td>
 						</tr>
 						<tr>
-							<th>간단한 설명(선택사항)</th>
+							<th class="title">간단한 설명(선택사항)</th>
 							<td>
-								<input type="text" name="subTitle" placeholder="메인페이지에 보여질 간단한 설명(선택)">
+								<input id="subtitle" type="text" name="subTitle" placeholder="메인페이지에 보여질 간단한 설명(선택)">
 							</td>
 						</tr>
 						<tr>
-							<th>상세설명</th>
+							<th class="title">상세설명</th>
 							<td>
 								<textarea name="goodsDetail" cols="100" rows="15"></textarea>
 							</td>
 						</tr>
 						<tr>
-							<th>사진첨부</th>
+							<th class="title">사진첨부</th>
 							<td>
-								<input type="file" name="goodsFile">
+								<input id="img" type="file" name="goodsFile">
+								<div id="img_chk"></div>
 							</td>
 						</tr>
 					</table>
 					<script type="text/javascript">
 						$(function(){
 							$("#diso").click(function(){
-								$("#discount").show();
+								$("#discount").css("display", "revert");
 							});
 							$("#disx").click(function(){
-								$("#discount").hide();
+								$("#discount").css("display", "none");
 							});
+							
+							//상품등록 유효성검사
+							
+							//가격 숫자만입력
+							$("#price").focusout(function(){
+								var price = $("#price").val().trim();
+								var pricechk = /^[0-9]*$/;
+								
+								if(!pricechk.test(price)){
+									$("#price_chk").html("공백을 제외한 숫자만 입력해주세요").css("color", "red");
+									$("#price").focus();
+									return false;
+								}else{
+									$("#price_chk").html("").css("color", "#fff");
+									return true;
+								}
+							});
+							
+							
+							//갯수 숫자만입력
+							$("#stock").focusout(function(){
+								var price = $("#stock").val().trim();
+								var pricechk = /^[0-9]*$/;
+								
+								if(!pricechk.test(price)){
+									$("#stock_chk").html("공백을 제외한 숫자만 입력해주세요").css("color", "red");
+									$("#stock").focus();
+									return false;
+								}else{
+									$("#stock_chk").html("").css("color", "#fff");
+									return true;
+								}
+							});
+							
+							
 						});
 					</script>
 					<ul>

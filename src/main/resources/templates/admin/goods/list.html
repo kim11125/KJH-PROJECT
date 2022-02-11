@@ -11,7 +11,7 @@
 							<td>관리번호</td>
 							<td>이미지</td>
 							<td>상품명</td>
-							<td>간단 설명</td>
+							<td class="subtitle">간단 설명</td>
 							<td>가격</td>
 							<td>할인율</td>
 							<td>재고</td>
@@ -27,7 +27,7 @@
 								<img th:src="${dto.filePath + dto.fileName}" height="80px;">
 							</td>
 							<td>[[${dto.title}]]</td>
-							<td>[[${dto.subTitle}]]</td>
+							<td class="subtitle">[[${dto.subTitle}]]</td>
 							<td>[[${dto.price}]]</td>
 							<td>[[${dto.discount}]]</td>
 							<td>[[${dto.stock}]]</td>
