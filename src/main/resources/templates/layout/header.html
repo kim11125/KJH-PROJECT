@@ -22,22 +22,22 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 						<!-- sns아이콘 -->
 							<ul class="icons flex between">
 								<li>
-									<a href="http://www.naver.com" target="_blank">
+									<a href="https://www.facebook.com/galaxyvga/" target="_blank">
 										<img alt="facebook" src="/images/face.gif">
 									</a>
 								</li>
 								<li>
-									<a href="#" target="_blank">
+									<a href="http://brand.danawa.com/galaxykorea" target="_blank">
 										<img alt="danawa" src="/images/danawa.gif">
 									</a>
 								</li>
 								<li>
-									<a href="#" target="_blank">
+									<a href="https://pf.kakao.com/_HyxbJd" target="_blank">
 										<img alt="kakao" src="/images/kakao.png">
 									</a>
 								</li>
 								<li>
-									<a href="https://www.youtube.com/watch?v=Dhy20HC8bM4&list=PLu5cXg30tjURoULIY32g38TvgNIcldgvN" target="_blank">
+									<a href="https://www.youtube.com/" target="_blank">
 										<img alt="youtube" src="/images/youtube.png">
 									</a>
 								</li>
@@ -98,17 +98,25 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 					<div id="logo">
 						<h1>로고</h1>
 						<!-- 로고들어갈자리 -->
-						<a href="/">GALAX</a>
+						<a href="/">KJH</a>
 					</div>
 					<div th:replace="~{/layout/menu}"></div>
 					<script type="text/javascript">
 					$(function(){
 						
-						$(".nb>ul .wrap").hover(function(){
-							$(this).parent().find("#sub-menu").fadeIn(300);
-						},function(){
-							$(this).parent().find("#sub-menu").fadeOut(300);
+						$("#top-menu .nb ul .wrap a").mouseover(function(){
+							alert("1");
 						});
+						
+						/* $(".sub-menu").mouseout(function(){
+							$(this).fadeOut(300);
+						}); */
+						
+						/* $(".nb>ul .wrap>li>a").hover(function(){
+						} */
+						/* ,function(){
+							$(this).parent().find(".sub-menu").fadeOut(300);
+						}); */
 					});
 					</script>
 					<div id="search">

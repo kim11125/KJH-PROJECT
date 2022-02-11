@@ -124,32 +124,32 @@ header>.wrap>.social #login{
 	color: red;
 }
 
-#top-menu > .nb > ul > .wrap:hover #sub-menu{
+/* #top-menu > .nb > ul > .wrap:hover .sub-menu{
 	display: block;
-}
+} */
 
-#top-menu > .nb > ul .wrap #sub-menu{
+#top-menu > .nb > ul .wrap .sub-menu{
 	display: none;
 	position: absolute;
 	padding: 10px;
 	background-color: #fff;
 }
 
-#top-menu > .nb > ul .wrap #sub-menu li{
+#top-menu > .nb > ul .wrap .sub-menu li{
 	float: none;
 	border-top: 1px dotted #888;
 }
 
-#top-menu > .nb > ul .wrap #sub-menu li:first-child{
+#top-menu > .nb > ul .wrap .sub-menu li:first-child{
 	border: none;
 }
 
-#top-menu > .nb > ul .wrap #sub-menu li a{
+#top-menu > .nb > ul .wrap .sub-menu li a{
 	display: block;
 	padding: 6px;
 	color: #a9a9a9;
 }
 
-#top-menu > .nb > ul .wrap #sub-menu li a:hover{
+#top-menu > .nb > ul .wrap .sub-menu li a:hover{
 	color: #000;
 }

@@ -25,13 +25,13 @@
 	text-align: left;
 	height: 20px;
 }
-#footer>.wrap>.nb ul li>#sub-menu li{
+#footer>.wrap>.nb ul li>.sub-menu li{
 	margin: 7px 0;
 }
-#footer>.wrap>.nb ul li>#sub-menu li:first-child{
+#footer>.wrap>.nb ul li>.sub-menu li:first-child{
 	margin-top: 15px;
 }
-#footer>.wrap>.nb ul li>#sub-menu a{
+#footer>.wrap>.nb ul li>.sub-menu a{
 	color: #949494;
 	height: 35px;
 	font-size: 13px;
