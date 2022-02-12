@@ -105,18 +105,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 					$(function(){
 						
 						$("#top-menu .nb ul .wrap a").mouseover(function(){
-							alert("1");
+							$(this).siblings(".sub-menu").fadeIn(300);
 						});
 						
-						/* $(".sub-menu").mouseout(function(){
-							$(this).fadeOut(300);
-						}); */
+						$("#top-menu .nb ul .wrap").mouseout(function(){
+							console.log("1");
+						});
 						
-						/* $(".nb>ul .wrap>li>a").hover(function(){
-						} */
-						/* ,function(){
-							$(this).parent().find(".sub-menu").fadeOut(300);
-						}); */
 					});
 					</script>
 					<div id="search">

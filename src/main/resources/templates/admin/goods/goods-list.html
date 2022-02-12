@@ -22,23 +22,39 @@
 						<li class="flex count">
 							<span>수량</span>
 							<div class="wrap">
-								<input class="cnum" type="text" value="1">
+								<input class="cnum" type="text" value="1" min="1" readonly="readonly">
 								<button class="countup" type="button">+</button>
 								<button class="countdown" type="button">-</button>
 							</div>
 						</li>
 					</ul>
 					<div class="flex end btn-cart">
-						<button id="btn-cart" type="submit" onsubmit="cart()">장바구니 담기</button>
+						<button id="btn-cart" type="submit">장바구니 담기</button>
 					</div>
-					<script type="text/javascript">
-						$(".countup").click(function(){
-							var a = $(this).parents("#goodspage .wrap").find(".cnum").val();
-							console.log(a);
-						});
-					</script>
 				</div>
 			</div>
 		</div>
 	</th:block>
+	<script type="text/javascript">
+		$(".countup").click(function(){
+			var cnum = $(this).siblings(".cnum").val();
+			var cnumUp = ++cnum;
+			//console.log(cnum);
+			$(this).siblings(".cnum").attr("value",cnumUp);
+			//console.log(cnumUp);
+		});
+		
+		$(".countdown").click(function(){
+			var cnum = $(this).siblings(".cnum").val();
+			var cnumDown = --cnum;
+			//console.log(cnum);
+			$(this).siblings(".cnum").attr("value",cnumDown);
+			//console.log(cnumDown);
+			if( cnum <= 0){
+				alert("최소 수량은 1개입니다.");
+				$(this).siblings(".cnum").attr("value","1");
+			}
+			
+		});
+	</script>
 </html>
