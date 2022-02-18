@@ -177,9 +177,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 			var userId = $("#id").val().trim();
 			var idpattern = /^[a-zA-Z0-9_-]{6,}$/;
 			
-			
-			
-			
 			if(userId.length < 6){
 				$("#id_chk").html("*아이디는 최소 6자이상 입력하세요.").css("color", "red");
 				$("#id").focus();
@@ -195,6 +192,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-securit">
 				
 		})
 		
+		//아이디 중복체크
 		$("#id").focusout(function(){
 			var userId = $("#id").val().trim();
 			

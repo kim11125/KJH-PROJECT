@@ -124,9 +124,9 @@ header>.wrap>.social #login{
 	color: red;
 }
 
-/* #top-menu > .nb > ul > .wrap:hover .sub-menu{
+#top-menu > .nb > ul > .wrap:hover .sub-menu{
 	display: block;
-} */
+}
 
 #top-menu > .nb > ul .wrap .sub-menu{
 	display: none;

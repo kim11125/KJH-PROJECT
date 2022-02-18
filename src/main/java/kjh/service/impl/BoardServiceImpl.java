@@ -29,7 +29,7 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardEntityRepository repository;
 	
-	//자료실 페이지 이동 페이징처리 완료
+	//자료실 페이지 이동 및 페이징처리 완료
 	@Override
 	public String BoardPage(Model model, int page) {
 		
@@ -95,8 +95,4 @@ public class BoardServiceImpl implements BoardService {
 		return "redirect:/custom/board"; //삭제하면 자료실 리스트페이지로 재요청
 	}
 
-////////////////////////////////////////////////////////////////////////////////
-	
-	
-	
 }

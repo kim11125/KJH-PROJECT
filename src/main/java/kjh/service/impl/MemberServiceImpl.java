@@ -54,8 +54,9 @@ public class MemberServiceImpl implements MemberService {
 		entity = dto.toEntity();
 		
 		if( dto.getEmail().contains("@admin.com") ) {
-			//이메일이 @admin.com으로 끝나는 경우 관리자권한 부여
+			//이메일이 @admin.com으로 끝나는 경우 관리자권한 추가 부여
 			entity.addRole(MemberRole.ADMIN);
+			entity.addRole(MemberRole.USER);
 		}else {
 			//그외는 유저롤 부여
 			entity.addRole(MemberRole.USER);
@@ -83,7 +84,7 @@ public class MemberServiceImpl implements MemberService {
 		repository.findById(dto.getMno()).map(e->e.update(dto));
 	}
 	
-	//회원탈퇴처리
+	//회원탈퇴처리 페이지 이동 및 회원정보 데이터 받아오기
 	@Override
 	public String withdraw(MyUserDetails user, Model model) {
 		MemberEntity result = repository.findById(user.getMno()).get();

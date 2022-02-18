@@ -54,9 +54,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 						<div sec:authorize="hasRole('ROLE_USER')">
 							<form th:action="|/qna/${detail.qno}|" method="post">
 								<a href="/qna/write"><button type="button">글쓰기</button></a>
-								<button type="button" id="qna-update">수정</button>
-								<input type="hidden" name="_method" value="DELETE">
-								<button id="del-qna" type="submit">삭제</button>
+								<span sec:authorize="isAuthenticated()">
+									<!-- 본인이 쓴 글만 수정가능 -->
+									<button th:if="${detail.member.mno eq #authentication.writer}" type="button" id="qna-update">수정</button>
+									<input type="hidden" name="_method" value="DELETE">
+									<!-- 본인 또는 작성자 삭제가능 -->									
+									<button th:if="${#suthorization.expression('hasRole('ROLE_ADMIN')')} or (detail.member.mno eq #authentication.writer)" id="del-qna" type="submit">삭제</button>
+								</span>
 							</form>
 						</div>
 					</div>
